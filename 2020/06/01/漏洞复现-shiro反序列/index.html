@@ -6,14 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 漏洞修复 | 腾小飞的博客</title>
+  <title>漏洞复现-shiro反序列 | 腾小飞的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="腾小飞的博客">
-<meta property="og:url" content="http://yoursite.com/tags/%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/index.html">
+  <meta name="description" content="摘要Apache Shiro默认使用了CookieRememberMeManager，其处理cookie的流程是：得到rememberMe的cookie值 &gt; Base64解码–&gt;AES解密–&gt;反序列化。然而AES的密钥是硬编码的，就导致了攻击者可以构造恶意数据造成反序列化的RCE漏洞。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="漏洞复现-shiro反序列">
+<meta property="og:url" content="http://yoursite.com/2020/06/01/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-shiro%E5%8F%8D%E5%BA%8F%E5%88%97/index.html">
 <meta property="og:site_name" content="腾小飞的博客">
+<meta property="og:description" content="摘要Apache Shiro默认使用了CookieRememberMeManager，其处理cookie的流程是：得到rememberMe的cookie值 &gt; Base64解码–&gt;AES解密–&gt;反序列化。然而AES的密钥是硬编码的，就导致了攻击者可以构造恶意数据造成反序列化的RCE漏洞。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-01T07:20:25.000Z">
+<meta property="article:modified_time" content="2020-06-01T07:31:43.033Z">
 <meta property="article:author" content="腾小飞的博客">
+<meta property="article:tag" content="shiro反序列">
+<meta property="article:tag" content="漏洞复现">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="腾小飞的博客" type="application/atom+xml">
@@ -140,48 +146,71 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-漏洞复现-shiro反序列" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/29/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E9%80%9A%E7%94%A8%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-05-29T08:29:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-29</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/29/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E9%80%9A%E7%94%A8%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/">渗透测试常见漏洞通用修复方法</a>
+    <h1 class="article-title" itemprop="name">
+      漏洞复现-shiro反序列
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/06/01/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-shiro%E5%8F%8D%E5%BA%8F%E5%88%97/" class="archive-article-date">
+  	<time datetime="2020-06-01T07:20:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
+</a>
+        
+    
+    
+        
+          <span class="archive-article-date">
+              阅读量 <span id="busuanzi_value_page_pv"></span>
+          </span>
+        
+    
+    
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>Apache Shiro默认使用了CookieRememberMeManager，其处理cookie的流程是：得到rememberMe的cookie值 &gt; Base64解码–&gt;AES解密–&gt;反序列化。然而AES的密钥是硬编码的，就导致了攻击者可以构造恶意数据造成反序列化的RCE漏洞。</p>
+<a id="more"></a>
+
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Apache Shiro &lt;&#x3D; 1.2.4</span><br></pre></td></tr></table></figure>
+
+<h3 id="漏洞特征："><a href="#漏洞特征：" class="headerlink" title="漏洞特征："></a>漏洞特征：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shiro反序列化的特征：在返回包的 Set-Cookie 中存在 rememberMe&#x3D;deleteMe 字段</span><br></pre></td></tr></table></figure>
+
+<h3 id="环境搭建："><a href="#环境搭建：" class="headerlink" title="环境搭建："></a>环境搭建：</h3><p>vulhub拉去镜像</p>
+<p>执行命令启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p><img src="" alt="http://qaote8jit.bkt.clouddn.com/githubimage-20200601152700931.png"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">漏洞修复</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">shiro反序列</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">漏洞复现</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -191,24 +220,131 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/渗透测试/漏洞修复//" class="article-tag-list-link color5">漏洞修复</a>
+        			<a href="/categories/渗透测试/漏洞复现//" class="article-tag-list-link color5">漏洞复现</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/01/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-shiro%E5%8F%8D%E5%BA%8F%E5%88%97/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/06/01/test/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          test
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2020/05/29/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E9%80%9A%E7%94%A8%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">渗透测试常见漏洞通用修复方法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/2020/06/01/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-shiro%E5%8F%8D%E5%BA%8F%E5%88%97/", 
+    sourceId: "漏洞复现-shiro反序列",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -261,9 +397,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
