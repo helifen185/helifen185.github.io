@@ -16,8 +16,15 @@
 <meta property="og:description" content="摘要Domain Fronting，中文译名 “域前置” 或 “域名前置”，是一种用于隐藏真实C2服务器IP且同时能伪装为与高信誉域名通信的技术，多用于木马受控端和控制端之间的隐蔽通信。 简言之，利用该技术，可以让受控端以为程序是在和一个高信誉域名通信，但实际上却是在和我们的C2服务器进行通信，效果如下">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200622164214658.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623114046546.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623123524868.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623123555430.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623123741584.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623124034561.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623124749564.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623124917562.png">
 <meta property="article:published_time" content="2020-06-22T08:34:25.000Z">
-<meta property="article:modified_time" content="2020-06-23T02:46:27.463Z">
+<meta property="article:modified_time" content="2020-06-23T04:53:40.295Z">
 <meta property="article:author" content="腾小飞的博客">
 <meta property="article:tag" content="cobaltstrike">
 <meta property="article:tag" content="域前置">
@@ -183,7 +190,37 @@
 <p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200622164214658.png" alt="githubimage-20200622164214658"></p>
 <a id="more"></a>
 
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p>在说Domain Fronting之前先说一下通过本次实验的一些思考，常规的绕过被抓IOC的思路就是在真实IP之前加一些代理，例如通过<a href="http://www.ngrok.cc/" target="_blank" rel="noopener">ngrok</a>或者CDN或nginx反代的方式</p>
+<p>这里说到ngrok，忽然想到一些反射马是不是也可以通过这类型的方式隐藏自己的真实IP，后续有待研究</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>Domain Fronting的原理如下</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623114046546.png" alt="image-20200623114046546"></p>
+<p>大概意思是CDN会通过不同的HOST的头来区分把数据转发到哪里</p>
+<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><p>这里通过以下域名进行测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nslookup klst.96jm.com</span><br><span class="line"></span><br><span class="line">nslookup www.shhorse.com.cn</span><br></pre></td></tr></table></figure>
+
+<p>通过nslookup查看，可看到两个站是接的同一批CDN</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623123524868.png" alt="image-20200623123524868"></p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623123555430.png" alt="image-20200623123555430"></p>
+<p>用以下命令发送GET请求，返回301</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl klst.96jm.com -v</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623123741584.png" alt="image-20200623123741584"></p>
+<p>用以下命令发送请求 返回302</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl www.shhorse.com.cn -v</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623124034561.png" alt="image-20200623124034561"></p>
+<p>以上的请求说明了两个站不同的返回内容</p>
+<p><u></u></p>
+<p>上面nslookup可看到CDN地址，随便取一个进行请求，返回403，说明并未解析到上面两个任何一个网站</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl 120.221.30.218</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623124749564.png" alt="image-20200623124749564"></p>
+<p>请求的时候带上host头可得到下面结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl 120.221.30.218 -H &quot;host:www.shhorse.com.cn&quot; -v</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623124917562.png" alt="image-20200623124917562"></p>
+<p>这里可以看到和上面直接请求域名返回的结果是一样的，也正因为这个特性，我们可以通过判断host头，把数据转发到我们的CC主机，从而隐藏自己的IP信息（到这里不太懂的看最开始的原理图）</p>
+
       
 
       
@@ -220,7 +257,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/渗透测试/CC加密通信//" class="article-tag-list-link color2">CC加密通信</a>
+        			<a href="/categories/渗透测试/流量绕过//" class="article-tag-list-link color5">流量绕过</a>
         		</li>
       		
 		</ul>
