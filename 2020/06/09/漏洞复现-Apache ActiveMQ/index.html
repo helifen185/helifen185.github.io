@@ -19,7 +19,6 @@
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200609114603532.png">
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200609144843836.png">
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200609145216094.png">
-<meta property="og:image" content="c:%5CUsers%5Cbiubiubiu%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201018003626077.png">
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201016141559896.png">
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201020104812776.png">
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201020160042538.png">
@@ -27,7 +26,7 @@
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201023103644292.png">
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201023103840831.png">
 <meta property="article:published_time" content="2020-06-09T02:43:16.000Z">
-<meta property="article:modified_time" content="2020-10-23T02:39:05.625Z">
+<meta property="article:modified_time" content="2020-10-23T03:22:51.258Z">
 <meta property="article:author" content="腾小飞的博客">
 <meta property="article:tag" content="exp">
 <meta property="article:tag" content="ActiveMQ">
@@ -235,7 +234,8 @@
 <h4 id="webshell利用"><a href="#webshell利用" class="headerlink" title="webshell利用"></a>webshell利用</h4><h5 id="利用条件：1、成功登录ActiveMQ-2、知道绝对路径"><a href="#利用条件：1、成功登录ActiveMQ-2、知道绝对路径" class="headerlink" title="利用条件：1、成功登录ActiveMQ    2、知道绝对路径"></a>利用条件：1、成功登录ActiveMQ    2、知道绝对路径</h5><p>成功登录后，访问如下URL可查看绝对路径</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;xxxx&#x2F;admin&#x2F;test&#x2F;systemProperties.jsp</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:%5CUsers%5Cbiubiubiu%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201018003626077.png" alt="image-20201018003626077"></p>
+
+
 <p>也可以用如下数据包尝试爆绝对路径（复现未成功）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;fileserver&#x2F;test&#x2F;%20&#x2F;%20 HTTP&#x2F;1.1</span><br><span class="line">Host: 192.168.125.130:8161</span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">Accept-Language: en</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident&#x2F;5.0)</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length: 7</span><br><span class="line"></span><br><span class="line">jspspay</span><br></pre></td></tr></table></figure>
 
@@ -556,6 +556,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ActiveMQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CVE-2018-8715</a>
               </li>
              
@@ -568,7 +572,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ActiveMQ</a>
+                <a href="javascript:void(0)" class="js-tag color3">OllyDbg</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,10 +585,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Domain Fronting</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OllyDbg</a>
               </li>
              
               <li class="article-tag-list-item">
