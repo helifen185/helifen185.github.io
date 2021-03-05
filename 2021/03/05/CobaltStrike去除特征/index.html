@@ -6,15 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: ActiveMQ | biubiubiu~blog</title>
+  <title>CobaltStrike去除特征 | biubiubiu~blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="biubiubiu~blog">
-<meta property="og:url" content="http://yoursite.com/tags/ActiveMQ/index.html">
+  <meta name="description" content="摘要CobaltStrike是一款优秀的团队C2作战工具，也是在红蓝对抗中常用的工具，此处通过网络中其他文章中的内容进行总结，精炼其中修改特征的方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CobaltStrike去除特征">
+<meta property="og:url" content="http://yoursite.com/2021/03/05/CobaltStrike%E5%8E%BB%E9%99%A4%E7%89%B9%E5%BE%81/index.html">
 <meta property="og:site_name" content="biubiubiu~blog">
+<meta property="og:description" content="摘要CobaltStrike是一款优秀的团队C2作战工具，也是在红蓝对抗中常用的工具，此处通过网络中其他文章中的内容进行总结，精炼其中修改特征的方法。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210305130801226.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210305131238210.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210305133402407.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210305133645347.png">
+<meta property="article:published_time" content="2021-03-05T06:26:23.414Z">
+<meta property="article:modified_time" content="2021-03-05T06:26:23.414Z">
 <meta property="article:author" content="biubiubiu~blog">
+<meta property="article:tag" content="CobaltStrike">
+<meta property="article:tag" content="去除特征">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210305130801226.png">
   
     <link rel="alternative" href="/atom.xml" title="biubiubiu~blog" type="application/atom+xml">
   
@@ -140,60 +151,102 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-CobaltStrike去除特征" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/09/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-Apache%20ActiveMQ/" class="archive-article-date">
-  	<time datetime="2020-06-09T02:43:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/09/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-Apache%20ActiveMQ/">ActiveMQ 漏洞复现</a>
+    <h1 class="article-title" itemprop="name">
+      CobaltStrike去除特征
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2021/03/05/CobaltStrike%E5%8E%BB%E9%99%A4%E7%89%B9%E5%BE%81/" class="archive-article-date">
+  	<time datetime="2021-03-05T06:26:23.414Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-05</time>
+</a>
+        
+    
+    
+        
+          <span class="archive-article-date">
+              阅读量 <span id="busuanzi_value_page_pv"></span>
+          </span>
+        
+    
+    
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>CobaltStrike是一款优秀的团队C2作战工具，也是在红蓝对抗中常用的工具，此处通过网络中其他文章中的内容进行总结，精炼其中修改特征的方法。</p>
+<a id="more"></a>
+
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="端口特征修改"><a href="#端口特征修改" class="headerlink" title="端口特征修改"></a>端口特征修改</h3><p>CobaltStrike的连接端口默认为50050，这是个很明显的特征。要想修改这个默认端口，我们可以修改teamserver文件，将50050端口改成任意其他端口均可。</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210305130801226.png" alt="image-20210305130801226"></p>
+<h3 id="证书特征修改"><a href="#证书特征修改" class="headerlink" title="证书特征修改"></a>证书特征修改</h3><p>查看CobaltStrike的默认store文件，这里的CobaltStrike.store是服务端使用的证书（也就是管理端连接），输入以下命令后再输入密钥即可查看，默认123456</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -list -v -keystore cobaltstrike.store</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210305131238210.png" alt="image-20210305131238210"></p>
+<p>为了掩盖默认SSL证书存在的特征，需要重新创建或修改证书。</p>
+<h4 id="修改证书"><a href="#修改证书" class="headerlink" title="修改证书"></a>修改证书</h4><p><strong>修改证书密码</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -storepasswd -keystore test.store</span><br></pre></td></tr></table></figure>
+
+<p>执行后会提示输入证书的当前密码，和新密码以及重复新密码确认。</p>
+<p><strong>修改keystore的alias（别名）</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -changealias -keystore test.store -alias source_name -destalias new_name</span><br></pre></td></tr></table></figure>
+
+<p>source_name是证书中原来的alias（别名），-destalias指定的是要修改为的alias，这里我们改为new_name。</p>
+<p><strong>修改alias（别名）的密码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -keypasswd -keystore test.store -alias source_name</span><br></pre></td></tr></table></figure>
+
+<p>执行后会提示输入keystore密码，alias密码，然后提示输入新的alias密码，即完成修改。</p>
+<h4 id="重新创建"><a href="#重新创建" class="headerlink" title="重新创建"></a>重新创建</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -keystore cobaltstrike.store -storepass 密码 -keypass 密码 -genkey -keyalg RSA -alias google.com -dname &quot;CN&#x3D;(名字与姓氏), OU&#x3D;(组织单位名称), O&#x3D;(组织名称), L&#x3D;(城市或区域名称), ST&#x3D;(州或省份名称), C&#x3D;(单位的两字母国家代码)&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>-alias 指定别名</li>
+<li>-storepass pass 和 -keypass pass 指定密钥</li>
+<li>-keyalg 指定算法</li>
+<li>-dname 指定所有者信息</li>
+</ul>
+<p>先删除 CobaltStrike 自带的 cobaltstrike.store，然后使用以下命令生成一个新的 cobaltstrike.store 即可！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -keystore cobaltstrike.store -storepass 123456 -keypass 123456 -genkey -keyalg RSA -alias baidu.com -dname &quot;CN&#x3D;(名字与姓氏), OU&#x3D;(组织单位名称), O&#x3D;(组织名称), L&#x3D;(城市或区域名称), ST&#x3D;(州或省份名称), C&#x3D;(单位的两字母国家代码)&quot;</span><br></pre></td></tr></table></figure>
+
+<p>载入命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -importkeystore -srckeystore cobaltstrike.store -destkeystore cobaltstrike.store -deststoretype pkcs12</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="服务端启动"><a href="#服务端启动" class="headerlink" title="服务端启动"></a>服务端启动</h4><p>这里修改完证书后直接启动会报错</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210305133402407.png" alt="image-20210305133402407"></p>
+<p>需要修改teamserver对应的密钥，另外建议把这里的特征也做修改</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210305133645347.png" alt="image-20210305133645347"></p>
+<p>未完待续</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">exp</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">CobaltStrike</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ActiveMQ</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CVE-2015-5254</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CVE-2016-3088</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">去除特征</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -203,24 +256,122 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/渗透测试/漏洞复现//" class="article-tag-list-link color5">漏洞复现</a>
+        			<a href="/categories/渗透测试/流量绕过//" class="article-tag-list-link color5">流量绕过</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/03/05/CobaltStrike%E5%8E%BB%E9%99%A4%E7%89%B9%E5%BE%81/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/10/23/ApereoCAS4.1%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Apereo CAS 4.1 反序列化命令执行漏洞</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/2021/03/05/CobaltStrike%E5%8E%BB%E9%99%A4%E7%89%B9%E5%BE%81/", 
+    sourceId: "CobaltStrike去除特征",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -273,9 +424,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
