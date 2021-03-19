@@ -6,24 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Apereo CAS 4.1 反序列化命令执行漏洞 | biubiubiu~blog</title>
+  <title>CobaltStrike去除特征 | biubiubiu~blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要Apereo CAS是一款Apereo发布的集中认证服务平台，常被用于企业内部单点登录系统。其4.1.7版本之前存在一处默认密钥的问题，利用这个默认密钥我们可以构造恶意信息触发目标反序列化漏洞，进而执行任意命令。">
+  <meta name="description" content="摘要CobaltStrike是一款优秀的团队C2作战工具，也是在红蓝对抗中常用的工具，此处通过网络中其他文章中的内容进行总结，精炼其中修改特征的方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Apereo CAS 4.1 反序列化命令执行漏洞">
-<meta property="og:url" content="http://yoursite.com/2020/10/23/ApereoCAS4.1%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/index.html">
+<meta property="og:title" content="CobaltStrike去除特征">
+<meta property="og:url" content="http://yoursite.com/2021/03/05/%E6%B5%81%E9%87%8F%E7%BB%95%E8%BF%87-CobaltStrike%E5%8E%BB%E9%99%A4%E7%89%B9%E5%BE%81/index.html">
 <meta property="og:site_name" content="biubiubiu~blog">
-<meta property="og:description" content="摘要Apereo CAS是一款Apereo发布的集中认证服务平台，常被用于企业内部单点登录系统。其4.1.7版本之前存在一处默认密钥的问题，利用这个默认密钥我们可以构造恶意信息触发目标反序列化漏洞，进而执行任意命令。">
+<meta property="og:description" content="摘要CobaltStrike是一款优秀的团队C2作战工具，也是在红蓝对抗中常用的工具，此处通过网络中其他文章中的内容进行总结，精炼其中修改特征的方法。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201023161325889.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201023161603664.png">
-<meta property="article:published_time" content="2020-10-23T08:04:16.000Z">
-<meta property="article:modified_time" content="2020-10-23T08:16:58.074Z">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210305130801226.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210305131238210.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210305133402407.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210305133645347.png">
+<meta property="article:published_time" content="2021-03-05T05:00:00.000Z">
+<meta property="article:modified_time" content="2021-03-09T02:22:16.253Z">
 <meta property="article:author" content="biubiubiu~blog">
-<meta property="article:tag" content="Apereo CAS">
-<meta property="article:tag" content="exp">
+<meta property="article:tag" content="CobaltStrike">
+<meta property="article:tag" content="去除特征">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201023161325889.png">
+<meta name="twitter:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210305130801226.png">
   
     <link rel="alternative" href="/atom.xml" title="biubiubiu~blog" type="application/atom+xml">
   
@@ -149,20 +151,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ApereoCAS4.1反序列化命令执行漏洞" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-流量绕过-CobaltStrike去除特征" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Apereo CAS 4.1 反序列化命令执行漏洞
+      CobaltStrike去除特征
     </h1>
   
 
         
-        <a href="/2020/10/23/ApereoCAS4.1%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" class="archive-article-date">
-  	<time datetime="2020-10-23T08:04:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-23</time>
+        <a href="/2021/03/05/%E6%B5%81%E9%87%8F%E7%BB%95%E8%BF%87-CobaltStrike%E5%8E%BB%E9%99%A4%E7%89%B9%E5%BE%81/" class="archive-article-date">
+  	<time datetime="2021-03-05T05:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-05</time>
 </a>
         
     
@@ -178,23 +180,53 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>Apereo CAS是一款Apereo发布的集中认证服务平台，常被用于企业内部单点登录系统。其4.1.7版本之前存在一处默认密钥的问题，利用这个默认密钥我们可以构造恶意信息触发目标反序列化漏洞，进而执行任意命令。</p>
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>CobaltStrike是一款优秀的团队C2作战工具，也是在红蓝对抗中常用的工具，此处通过网络中其他文章中的内容进行总结，精炼其中修改特征的方法。</p>
 <a id="more"></a>
 
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><p>vulhub拉取漏洞环境，使用以下命令编译启动，具体参考<a href="https://github.com/vulhub/vulhub/blob/master/apereo-cas/4.1-rce/README.zh-cn.md" target="_blank" rel="noopener">这里</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="端口特征修改"><a href="#端口特征修改" class="headerlink" title="端口特征修改"></a>端口特征修改</h3><p>CobaltStrike的连接端口默认为50050，这是个很明显的特征。要想修改这个默认端口，我们可以修改teamserver文件，将50050端口改成任意其他端口均可。</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210305130801226.png" alt="image-20210305130801226"></p>
+<h3 id="证书特征修改"><a href="#证书特征修改" class="headerlink" title="证书特征修改"></a>证书特征修改</h3><p>查看CobaltStrike的默认store文件，这里的CobaltStrike.store是服务端使用的证书（也就是管理端连接），输入以下命令后再输入密钥即可查看，默认123456</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -list -v -keystore cobaltstrike.store</span><br></pre></td></tr></table></figure>
 
-<h3 id="漏洞指纹"><a href="#漏洞指纹" class="headerlink" title="漏洞指纹"></a>漏洞指纹</h3><p>默认登录路径：/cas/login   版本判断暂未找到</p>
-<h3 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h3><p>Apereo CAS 4.1.7之前版本中</p>
-<h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><p>下载反序列化工具，点击<a href="https://github.com/vulhub/Apereo-CAS-Attack/releases/download/v1.0.0/apereo-cas-attack-1.0-SNAPSHOT-all.jar" target="_blank" rel="noopener">这里</a></p>
-<p>使用以下命令生成payload，反弹shell命令在<a href="http://www.jackson-t.ca/runtime-exec-payloads.html" target="_blank" rel="noopener">这里</a>进行编码后再做反弹</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar apereo-cas-attack-1.0-SNAPSHOT-all.jar CommonsCollections4 &quot;touch &#x2F;tmp&#x2F;success1&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210305131238210.png" alt="image-20210305131238210"></p>
+<p>为了掩盖默认SSL证书存在的特征，需要重新创建或修改证书。</p>
+<h4 id="修改证书"><a href="#修改证书" class="headerlink" title="修改证书"></a>修改证书</h4><p><strong>修改证书密码</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -storepasswd -keystore test.store</span><br></pre></td></tr></table></figure>
 
-<p>访问页面输入任意用户名密码抓包</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201023161325889.png" alt="image-20201023161325889"></p>
-<p>将payload放入execution参数内带入执行</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20201023161603664.png" alt="image-20201023161603664"></p>
-<p>over~</p>
+<p>执行后会提示输入证书的当前密码，和新密码以及重复新密码确认。</p>
+<p><strong>修改keystore的alias（别名）</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -changealias -keystore test.store -alias source_name -destalias new_name</span><br></pre></td></tr></table></figure>
+
+<p>source_name是证书中原来的alias（别名），-destalias指定的是要修改为的alias，这里我们改为new_name。</p>
+<p><strong>修改alias（别名）的密码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -keypasswd -keystore test.store -alias source_name</span><br></pre></td></tr></table></figure>
+
+<p>执行后会提示输入keystore密码，alias密码，然后提示输入新的alias密码，即完成修改。</p>
+<h4 id="重新创建"><a href="#重新创建" class="headerlink" title="重新创建"></a>重新创建</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -keystore cobaltstrike.store -storepass 密码 -keypass 密码 -genkey -keyalg RSA -alias google.com -dname &quot;CN&#x3D;(名字与姓氏), OU&#x3D;(组织单位名称), O&#x3D;(组织名称), L&#x3D;(城市或区域名称), ST&#x3D;(州或省份名称), C&#x3D;(单位的两字母国家代码)&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>-alias 指定别名</li>
+<li>-storepass pass 和 -keypass pass 指定密钥</li>
+<li>-keyalg 指定算法</li>
+<li>-dname 指定所有者信息</li>
+</ul>
+<p>先删除 CobaltStrike 自带的 cobaltstrike.store，然后使用以下命令生成一个新的 cobaltstrike.store 即可！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -keystore cobaltstrike.store -storepass 123456 -keypass 123456 -genkey -keyalg RSA -alias baidu.com -dname &quot;CN&#x3D;(名字与姓氏), OU&#x3D;(组织单位名称), O&#x3D;(组织名称), L&#x3D;(城市或区域名称), ST&#x3D;(州或省份名称), C&#x3D;(单位的两字母国家代码)&quot;</span><br></pre></td></tr></table></figure>
+
+<p>载入命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -importkeystore -srckeystore cobaltstrike.store -destkeystore cobaltstrike.store -deststoretype pkcs12</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="服务端启动"><a href="#服务端启动" class="headerlink" title="服务端启动"></a>服务端启动</h4><p>这里修改完证书后直接启动会报错</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210305133402407.png" alt="image-20210305133402407"></p>
+<p>需要修改teamserver对应的密钥，另外建议把这里的特征也做修改</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210305133645347.png" alt="image-20210305133645347"></p>
+<p>未完待续</p>
+<p>参考链接：</p>
+<p><a href="https://mp.weixin.qq.com/s/kikmZulOTf_xZIPa4DACUQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/kikmZulOTf_xZIPa4DACUQ</a></p>
+<p><a href="https://blog.csdn.net/shuteer_xu/article/details/106435793" target="_blank" rel="noopener">https://blog.csdn.net/shuteer_xu/article/details/106435793</a></p>
+<p>​                    </p>
 
       
 
@@ -208,11 +240,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Apereo CAS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">CobaltStrike</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">exp</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">去除特征</a>
         		</li>
       		
 		</ul>
@@ -228,7 +260,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/渗透测试/漏洞复现//" class="article-tag-list-link color5">漏洞复现</a>
+        			<a href="/categories/渗透测试/流量绕过//" class="article-tag-list-link color5">流量绕过</a>
         		</li>
       		
 		</ul>
@@ -283,7 +315,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/10/23/ApereoCAS4.1%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/03/05/%E6%B5%81%E9%87%8F%E7%BB%95%E8%BF%87-CobaltStrike%E5%8E%BB%E9%99%A4%E7%89%B9%E5%BE%81/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -297,18 +329,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/03/05/CobaltStrike%E5%8E%BB%E9%99%A4%E7%89%B9%E5%BE%81/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/03/09/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-%E6%B3%9B%E5%BE%AE%E4%BA%91%E6%A1%A5%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          CobaltStrike去除特征
+          泛微云桥任意文件读取漏洞复现
         
       </div>
     </a>
   
   
-    <a href="/2020/09/21/OllyDbg%E5%AD%A6%E4%B9%A0_1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">OllyDbg学习第一节</div>
+    <a href="/2020/10/23/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-ApereoCAS4.1%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Apereo CAS 4.1 反序列化命令执行漏洞</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -339,8 +371,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "http://yoursite.com/2020/10/23/ApereoCAS4.1%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/", 
-    sourceId: "ApereoCAS4.1反序列化命令执行漏洞",
+    url: "http://yoursite.com/2021/03/05/%E6%B5%81%E9%87%8F%E7%BB%95%E8%BF%87-CobaltStrike%E5%8E%BB%E9%99%A4%E7%89%B9%E5%BE%81/", 
+    sourceId: "流量绕过-CobaltStrike去除特征",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
@@ -483,43 +515,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OllyDbg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Apereo CAS</a>
+                <a href="javascript:void(0)" class="js-tag color4">ActiveMQ</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">exp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">EXP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">泛微OA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">漏洞修复</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">泛微云桥</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CVE-2018-8715</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">APPWeb</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ActiveMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -531,11 +531,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">shiro反序列</a>
+                <a href="javascript:void(0)" class="js-tag color1">Apereo CAS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">thinkphp</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">泛微云桥</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OllyDbg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CVE-2018-8715</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">APPWeb</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">漏洞修复</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -551,7 +575,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">thinkphp</a>
+                <a href="javascript:void(0)" class="js-tag color5">泛微OA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">shiro反序列</a>
               </li>
             
             <div class="clearfix"></div>
