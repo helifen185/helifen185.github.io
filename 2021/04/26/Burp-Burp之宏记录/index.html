@@ -22,8 +22,20 @@
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210426180131091.png">
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210426180333051.png">
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210426180410518.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427103148288.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427103254080.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427103449880.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427103621610.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427103725003.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427103853202.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427104246805.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427104417195.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427104605950.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427104712447.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427104852638.png">
+<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427110555123.png">
 <meta property="article:published_time" content="2021-04-26T07:12:00.000Z">
-<meta property="article:modified_time" content="2021-04-26T10:07:46.627Z">
+<meta property="article:modified_time" content="2021-04-27T03:07:42.288Z">
 <meta property="article:author" content="biubiubiu~blog">
 <meta property="article:tag" content="BURP">
 <meta name="twitter:card" content="summary">
@@ -199,6 +211,33 @@
 <p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210426180333051.png" alt="image-20210426180333051"></p>
 <p>选择payload就可以一把梭了</p>
 <p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210426180410518.png" alt="image-20210426180410518"></p>
+<h4 id="实战测试"><a href="#实战测试" class="headerlink" title="实战测试"></a>实战测试</h4><p>俗话说的好，没有实战的技术研究都么的屁用，这里就随便找了个网站测试一下，这里经过一顿瞎搞以后发现和上面的逻辑不太一样。dvwa的环境当中是在发送登录包以后就返回了Token，而这个网站在第一次访问页面时候返回了Token，在使用过以后他会刷新页面，重新获取Token。这样我们就没有办法和上面一样索引一个数据包当中的内容来反复利用了，变成了</p>
+<p>访问首页获取Token=》带入登录包尝试登录=》再次访问首页获取Token=》再次尝试登录</p>
+<p>经过一番百度以后发现burp自带了宏记录功能，就省下写脚本的时间，废话不多说直接开干把</p>
+<p>访问首页获取Token的包长这样</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427103148288.png" alt="image-20210427103148288"></p>
+<p>登录的包长这样</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427103254080.png" alt="image-20210427103254080"></p>
+<p>当登录包中的Token错误的时候变成了这样</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427103449880.png" alt="image-20210427103449880"></p>
+<p>接下来就利用宏先去获取Token，位置如下图</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427103621610.png" alt="image-20210427103621610"></p>
+<p>点击add添加并找到获取Token的数据包</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427103725003.png" alt="image-20210427103725003"></p>
+<p>然后点击configgure item 点击Add</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427103853202.png" alt="image-20210427103853202"></p>
+<p>选中Token并命名，这里的名字要和参数里面的一样要写token，然后一顿OK就把宏配置好了</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427104246805.png" alt="image-20210427104246805"></p>
+<p>接下来就是启用宏，如下图点击add添加</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427104417195.png" alt="image-20210427104417195"></p>
+<p>点击add添加运行，选中OK即可</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427104605950.png" alt="image-20210427104605950"></p>
+<p>然后配置运行的位置图如下，这里主要是选在哪个模块用，选好后okk</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427104712447.png" alt="image-20210427104712447"></p>
+<p>接下来可以直接去repeater测试了，每次运行Token都会自动变化，省去了我们写脚本的时间</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427104852638.png" alt="image-20210427104852638"></p>
+<p>接下来尝试intruder模块，和正常暴力破解是一样的，不用管Token，直接配置好相关参数，这里需要线程或延时调低一点，太快的话获取Token的速度跟不上，然后就可以直接冲冲冲了，效果如下</p>
+<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210427110555123.png" alt="image-20210427110555123"></p>
 
       
 
@@ -466,23 +505,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">cobaltstrike</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">域前置</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Domain Fronting</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CobaltStrike</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">去除特征</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">BURP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -498,10 +529,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">apache solr</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ActiveMQ</a>
               </li>
              
@@ -514,15 +541,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Apereo CAS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">thinkphp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,15 +549,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">thinkphp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">泛微OA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OllyDbg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BURP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,7 +565,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OllyDbg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">漏洞修复</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">apache solr</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">cobaltstrike</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">域前置</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Domain Fronting</a>
               </li>
             
             <div class="clearfix"></div>
