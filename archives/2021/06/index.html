@@ -6,41 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>OllyDbg学习第一节 | biubiubiu~blog</title>
+  <title>Archives: 2021/6 | biubiubiu~blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要OllyDbg是一种具有可视化界面的32位汇编分析调试器，是一个新的动态追踪工具，将IDA与SoftICE结合起来的思想，Ring3级调试器，非常容易上手，己代替SoftICE成为当今最为流行的调试解密工具了。同时还支持插件扩展功能，是目前最强大的调试工具。本文是学习OllyDbg的第一章节。 By 苏格拉底•罗曼蒂克•皮特·东">
-<meta property="og:type" content="article">
-<meta property="og:title" content="OllyDbg学习第一节">
-<meta property="og:url" content="http://yoursite.com/2020/09/21/%E8%BD%AF%E4%BB%B6%E9%80%86%E5%90%91-OllyDbg%E5%AD%A6%E4%B9%A0_1/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="biubiubiu~blog">
+<meta property="og:url" content="http://yoursite.com/archives/2021/06/index.html">
 <meta property="og:site_name" content="biubiubiu~blog">
-<meta property="og:description" content="摘要OllyDbg是一种具有可视化界面的32位汇编分析调试器，是一个新的动态追踪工具，将IDA与SoftICE结合起来的思想，Ring3级调试器，非常容易上手，己代替SoftICE成为当今最为流行的调试解密工具了。同时还支持插件扩展功能，是目前最强大的调试工具。本文是学习OllyDbg的第一章节。 By 苏格拉底•罗曼蒂克•皮特·东">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200918114033986.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200918114152993.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921111948532.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921112032006.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921112107394.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921112139359.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921112201633.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114505629.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114626426.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114822311.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114850892.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114926264.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921230721847.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921230904925.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921230932121.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921230941391.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921232737033.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921232832703.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921232903474.png">
-<meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921232911957.png">
-<meta property="article:published_time" content="2020-09-21T15:30:25.000Z">
-<meta property="article:modified_time" content="2020-09-21T15:30:37.121Z">
 <meta property="article:author" content="biubiubiu~blog">
-<meta property="article:tag" content="OllyDbg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200918114033986.png">
   
     <link rel="alternative" href="/atom.xml" title="biubiubiu~blog" type="application/atom+xml">
   
@@ -166,242 +140,79 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-软件逆向-OllyDbg学习_1" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      OllyDbg学习第一节
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/06/21/%E6%B5%81%E9%87%8F%E7%BB%95%E8%BF%87-cobaltstrike%E4%BA%91%E5%87%BD%E6%95%B0%E9%9A%90%E8%97%8F%E7%9C%9F%E5%AE%9EIP/" class="archive-article-date">
+  	<time datetime="2021-06-21T02:43:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-21</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/06/21/%E6%B5%81%E9%87%8F%E7%BB%95%E8%BF%87-cobaltstrike%E4%BA%91%E5%87%BD%E6%95%B0%E9%9A%90%E8%97%8F%E7%9C%9F%E5%AE%9EIP/">cobaltstrike云函数隐藏真实IP</a>
     </h1>
   
 
-        
-        <a href="/2020/09/21/%E8%BD%AF%E4%BB%B6%E9%80%86%E5%90%91-OllyDbg%E5%AD%A6%E4%B9%A0_1/" class="archive-article-date">
-  	<time datetime="2020-09-21T15:30:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-21</time>
-</a>
-        
-    
-    
-        
-          <span class="archive-article-date">
-              阅读量 <span id="busuanzi_value_page_pv"></span>
-          </span>
-        
-    
-    
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p><strong>OllyDbg</strong>是一种具有可视化界面的32位汇编分析调试器，是一个新的动态追踪工具，将IDA与SoftICE结合起来的思想，Ring3级调试器，非常容易上手，己代替SoftICE成为当今最为流行的调试解密工具了。同时还支持插件扩展功能，是目前最强大的调试工具。本文是学习OllyDbg的第一章节。</p>
-<p><strong>By 苏格拉底•罗曼蒂克•皮特·东</strong></p>
-<a id="more"></a>
-
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h1 id="01-OllyDbg界面配置"><a href="#01-OllyDbg界面配置" class="headerlink" title="01.OllyDbg界面配置"></a>01.OllyDbg界面配置</h1><p>下载链接：<a href="https://down.52pojie.cn/Tools/Debuggers/" target="_blank" rel="noopener">https://down.52pojie.cn/Tools/Debuggers/</a></p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200918114033986.png" alt="image-20200918114033986"></p>
-<p>1.子窗口快捷方式<br>2.汇编窗口<br>3.信息串口<br>4.数据窗口<br>5.寄存器窗口<br>6.栈窗口</p>
-<p>配置1：缓存以及插件（使用看雪专用ollyDbg，初次使用前先点开<code>路径修复工具.exe</code>,会自动添加ODD缓存以及插件）</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200918114152993.png" alt="image-20200918114152993"></p>
-<h2 id="02-常用快捷键"><a href="#02-常用快捷键" class="headerlink" title="02.常用快捷键"></a>02.常用快捷键</h2><p>1.F2：设置断点，只要在光标定位的位置（上图中灰色条）按F2键即可，再按一次F2键则会删除断点。<br>2.F8：单步步过。每按一次这个键执行一条反汇编窗口中的一条指令，遇到 CALL 等子程序不进入其代码。<br>3.F7：单步步入。功能同单步步过(F8)类似，区别是遇到 CALL 等子程序时会进入其中，进入后首先会停留在子程序的第一条指令上。<br>4.F4：运行到选定位置。作用就是直接运行到光标所在位置处暂停。<br>5.F9：运行。按下这个键如果没有设置相应断点的话，被调试的程序将直接开始运行。<br>6.CTR+F9：执行到返回。此命令在执行到一个 ret (返回指令)指令时暂停，常用于从系统领空返回到我们调试的程序领空。</p>
-<h1 id="03-简单破解小程序"><a href="#03-简单破解小程序" class="headerlink" title="03.简单破解小程序"></a>03.简单破解小程序</h1><h3 id="1-练手小项目"><a href="#1-练手小项目" class="headerlink" title="1.练手小项目"></a>1.练手小项目</h3><p>160个crackme  一个练手逆向破解的小程序项目集合，百度就能搜到相关下载以及破解教程，下面附上吾爱破解大佬提供的打包下载地址。</p>
-<p><strong>160个CrackMe的打包文件下载地址：</strong><br>下载地址1：链接: <a href="https://pan.baidu.com/s/1Hw5dQXUa3-FOBKN5MFQAbg" target="_blank" rel="noopener">https://pan.baidu.com/s/1Hw5dQXUa3-FOBKN5MFQAbg</a> 提取码: bmvs 解压密码：52pojie</p>
-<h3 id="2-破解开始（破解第一个小程序：Acid-burn）"><a href="#2-破解开始（破解第一个小程序：Acid-burn）" class="headerlink" title="2.破解开始（破解第一个小程序：Acid_burn）"></a>2.破解开始（破解第一个小程序：Acid_burn）</h3><p>想要破解一个程序，必须先了解这个程序。所以，在破解过程中，对最初程序的分析很重要，他可以帮助我们理解作者的目的和意图，特别是对于注册码的处理细节，从而方便我们反向跟踪和推导。</p>
-<p>软件有两部分：<img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921111948532.png" alt="image-20200921111948532"></p>
-<p>先破解账号密码登录</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921112032006.png" alt="image-20200921112032006"></p>
-<p>根据小程序，我们可以打开推断程序的流程</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921112107394.png" alt="image-20200921112107394"></p>
-<h4 id="1-启动软件"><a href="#1-启动软件" class="headerlink" title="1.启动软件"></a>1.启动软件</h4><p>使用ollydbg打开</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921112139359.png" alt="image-20200921112139359"></p>
-<p>打开F9，启动小程序</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921112201633.png" alt="image-20200921112201633"></p>
-<p>开启后点击第一个登录框</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114505629.png" alt="image-20200921114505629"></p>
-<p>我们随意输入一个用户名和序列号（伪码）：</p>
-<p>伪码：<br>Name:112233<br>Serial:44556677<br>点击Check it Baby! 它会弹出一个对话框提示： Sorry， The Serial is incorrect !</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114626426.png" alt="image-20200921114626426"></p>
-<p>再换几个随意试试，发现就这一种情况。<br>OK，出现了对话框这就很好办，说明作者在校验注册码之后发现如果错误了就直接弹窗，我们只要找到弹出对话框的地方，向上跟踪，就可以找出判断是否正确的地方了，jmp或者Nop就算爆破了。</p>
-<h4 id="2-具体破解开始"><a href="#2-具体破解开始" class="headerlink" title="2.具体破解开始"></a>2.具体破解开始</h4><p>我们随意输入一个用户名和序列号（伪码）：<br>Name:112233<br>Serial:44556677<br>点击Check it Baby! 它会弹出一个对话框提示： Sorry， The Serial is incorrect !<br>此时不要点击确定按钮，返回OD暂停(F12),点击堆栈-K小图标(Ctrl+K) ,如下图：<img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114822311.png" alt="image-20200921114822311"></p>
-<p>这里有两个MessageBox的地址，第一个地址为77D5082F这个地址明显太大,不在模块的领空，不是的。第二个地址为0042A1AE，和00400100地址非常接近，十有八九就是它了。<br>右键 show call, 在Call上面设置断点。</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114850892.png" alt="image-20200921114850892"></p>
-<p>设置断点：</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921114926264.png" alt="image-20200921114926264"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">0042A170  &#x2F;$  55            push ebp</span><br><span class="line">0042A171  |.  8BEC          mov ebp,esp</span><br><span class="line">0042A173  |.  83C4 F4       add esp,-0xC</span><br><span class="line">0042A176  |.  53            push ebx</span><br><span class="line">0042A177  |.  56            push esi</span><br><span class="line">0042A178  |.  57            push edi</span><br><span class="line">0042A179  |.  8BF9          mov edi,ecx</span><br><span class="line">0042A17B  |.  8BF2          mov esi,edx</span><br><span class="line">0042A17D  |.  8BD8          mov ebx,eax</span><br><span class="line">0042A17F  |.  E8 7CB4FDFF   call &lt;jmp.&amp;user32.GetActiveWindow&gt;       ; [GetActiveWindow</span><br><span class="line">0042A184  |.  8945 F8       mov [local.2],eax</span><br><span class="line">0042A187  |.  33C0          xor eax,eax</span><br><span class="line">0042A189  |.  E8 12A0FFFF   call 004241A0</span><br><span class="line">0042A18E  |.  8945 F4       mov [local.3],eax</span><br><span class="line">0042A191  |.  33C0          xor eax,eax</span><br><span class="line">0042A193  |.  55            push ebp</span><br><span class="line">0042A194  |.  68 D0A14200   push 0042A1D0</span><br><span class="line">0042A199  |.  64:FF30       push dword ptr fs:[eax]</span><br><span class="line">0042A19C  |.  64:8920       mov dword ptr fs:[eax],esp</span><br><span class="line">0042A19F  |.  8B45 08       mov eax,[arg.1]</span><br><span class="line">0042A1A2  |.  50            push eax                                 ; &#x2F;Style</span><br><span class="line">0042A1A3  |.  57            push edi                                 ; |Title</span><br><span class="line">0042A1A4  |.  56            push esi                                 ; |Text</span><br><span class="line">0042A1A5  |.  8B43 24       mov eax,dword ptr ds:[ebx+0x24]          ; |</span><br><span class="line">0042A1A8  |.  50            push eax                                 ; |hOwner</span><br><span class="line">0042A1A9  |.  E8 FAB5FDFF   call &lt;jmp.&amp;user32.MessageBoxA&gt;           ; \MessageBoxA 设置的断点</span><br></pre></td></tr></table></figure>
-
-<p>往断点上面翻一翻，发现，没有跳转语句，逻辑很简单，在之上几行处就有retn，在头部push ebp下断，点击启动（F9），重新点击Check it baby 按钮，在右下角堆栈处找到最近一条Return语句</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921230721847.png" alt="image-20200921230721847"></p>
-<p>0012F974  0042FB37 RETURN to Acid_bur.0042FB37 from Acid_bur.0042A170</p>
-<p>右键 Follow in Disassm..(反汇编跟随)，这里直接连接了一个跳转，代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">0042FAD5  |.  68 C8FB4200   push 0042FBC8                            ;  UNICODE &quot;-&quot;</span><br><span class="line">0042FADA  |.  FF75 F8       push [local.2]</span><br><span class="line">0042FADD  |.  8D45 F4       lea eax,[local.3]</span><br><span class="line">0042FAE0  |.  BA 05000000   mov edx,0x5</span><br><span class="line">0042FAE5  |.  E8 C23EFDFF   call 004039AC</span><br><span class="line">0042FAEA  |.  8D55 F0       lea edx,[local.4]</span><br><span class="line">0042FAED  |.  8B83 E0010000 mov eax,dword ptr ds:[ebx+0x1E0]</span><br><span class="line">0042FAF3  |.  E8 60AFFEFF   call 0041AA58</span><br><span class="line">0042FAF8  |.  8B55 F0       mov edx,[local.4]</span><br><span class="line">0042FAFB  |.  8B45 F4       mov eax,[local.3]</span><br><span class="line">0042FAFE  |.  E8 F93EFDFF   call 004039FC</span><br><span class="line">0042FB03      75 1A         jnz short 0042FB1F                       ;  &#x2F;&#x2F; 这个JNZ条件判断很关键？</span><br><span class="line">0042FB05  |.  6A 00         push 0x0</span><br><span class="line">0042FB07  |.  B9 CCFB4200   mov ecx,0042FBCC</span><br><span class="line">0042FB0C  |.  BA D8FB4200   mov edx,0042FBD8</span><br><span class="line">0042FB11  |.  A1 480A4300   mov eax,dword ptr ds:[0x430A48]</span><br><span class="line">0042FB16  |.  8B00          mov eax,dword ptr ds:[eax]</span><br><span class="line">0042FB18  |.  E8 53A6FFFF   call 0042A170</span><br><span class="line">0042FB1D  |.  EB 18         jmp short 0042FB37                       ;  &#x2F;&#x2F; 这个跳转是不是很可疑？</span><br><span class="line">0042FB1F  |&gt;  6A 00         push 0x0</span><br><span class="line">0042FB21  |.  B9 74FB4200   mov ecx,0042FB74                         ;  ASCII 54,&quot;ry Again!&quot;</span><br><span class="line">0042FB26  |.  BA 80FB4200   mov edx,0042FB80                         ;  ASCII 53,&quot;orry , The serial is incorect !&quot;</span><br><span class="line">0042FB2B  |.  A1 480A4300   mov eax,dword ptr ds:[0x430A48]</span><br><span class="line">0042FB30  |.  8B00          mov eax,dword ptr ds:[eax]</span><br><span class="line">0042FB32  |.  E8 39A6FFFF   call 0042A170                            ;  这个CALL是导致跳转的语句</span><br><span class="line">0042FB37  |&gt;  33C0          xor eax,eax                              ;  返回到了这里</span><br></pre></td></tr></table></figure>
-
-<p>看到和提示框一样的文本，是不是感到很亲切？OK，我们大概浏览下代码，最近部分有两个可疑跳转JNZ 和JMP, JNZ会通过它上面的call 004039FC 判断我们的伪码是否正确，判断的结果存在EAX中，如果EAX不等于就跳转到错误提示信息框那里。我们的目的是无论伪码是否正确都通过验证，所以最简单的办法就是将jnz这句使用NOP填充，我们尝试一下：选择JNZ这句，右键Binary-&gt;Fill with NOPS.回到原始程序，（把之前打的断点可以删除）再次点击Check it baby!<br>哈哈，提示Good Job！通过了！</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921230904925.png" alt="image-20200921230904925"></p>
-<p>再次比对MessageBox和堆栈(Ctrl+K)窗口最后一个调用，是不是发现什么特殊的地方？对啦！那个CALL就是调用MessageBox的地方，所以，下次我们就不用在MessageBox处下断跟踪了，直接最后一个地址，show call。</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921230932121.png" alt="image-20200921230932121"></p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921230941391.png" alt="image-20200921230941391"></p>
-<h3 id="3-破解第二个序列码登录"><a href="#3-破解第二个序列码登录" class="headerlink" title="3.破解第二个序列码登录"></a>3.破解第二个序列码登录</h3><p>流程同第一个</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921232737033.png" alt="image-20200921232737033"></p>
-<p>直接找最后一个调用，show call</p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921232832703.png" alt="image-20200921232832703"></p>
-<p><strong>核心代码：</strong></p>
-<p>CALL之前的那个JNZ是爆破的关键，直接NOP就OK了。<br>JNZ之前的那个CALL是进行Serial判断的关键，通过单步跟踪发现他就是一个固定值。<br>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">0042F470  &#x2F;.  55            push ebp</span><br><span class="line">0042F471  |.  8BEC          mov ebp,esp</span><br><span class="line">0042F473  |.  33C9          xor ecx,ecx</span><br><span class="line">0042F475  |.  51            push ecx</span><br><span class="line">0042F476  |.  51            push ecx</span><br><span class="line">0042F477  |.  51            push ecx</span><br><span class="line">0042F478  |.  51            push ecx</span><br><span class="line">0042F479  |.  53            push ebx</span><br><span class="line">0042F47A  |.  8BD8          mov ebx,eax</span><br><span class="line">0042F47C  |.  33C0          xor eax,eax</span><br><span class="line">0042F47E  |.  55            push ebp</span><br><span class="line">0042F47F  |.  68 2CF54200   push 0042F52C</span><br><span class="line">0042F484  |.  64:FF30       push dword ptr fs:[eax]</span><br><span class="line">0042F487  |.  64:8920       mov dword ptr fs:[eax],esp</span><br><span class="line">0042F48A  |.  8D45 FC       lea eax,[local.1]</span><br><span class="line">0042F48D  |.  BA 40F54200   mov edx,0042F540                         ;  ASCII 48,&quot;ello&quot;</span><br><span class="line">0042F492  |.  E8 7142FDFF   call 00403708</span><br><span class="line">0042F497  |.  8D45 F8       lea eax,[local.2]</span><br><span class="line">0042F49A  |.  BA 50F54200   mov edx,0042F550                         ;  ASCII 44,&quot;ude!&quot;</span><br><span class="line">0042F49F  |.  E8 6442FDFF   call 00403708</span><br><span class="line">0042F4A4  |.  FF75 FC       push [local.1]</span><br><span class="line">0042F4A7  |.  68 60F54200   push 0042F560                            ;  UNICODE &quot; &quot;</span><br><span class="line">0042F4AC  |.  FF75 F8       push [local.2]</span><br><span class="line">0042F4AF  |.  8D45 F4       lea eax,[local.3]</span><br><span class="line">0042F4B2  |.  BA 03000000   mov edx,0x3</span><br><span class="line">0042F4B7  |.  E8 F044FDFF   call 004039AC</span><br><span class="line">0042F4BC  |.  8D55 F0       lea edx,[local.4]</span><br><span class="line">0042F4BF  |.  8B83 E0010000 mov eax,dword ptr ds:[ebx+0x1E0]</span><br><span class="line">0042F4C5  |.  E8 8EB5FEFF   call 0041AA58</span><br><span class="line">0042F4CA  |.  8B45 F0       mov eax,[local.4]                        ;  &#x2F;&#x2F; eax&#x3D;112233</span><br><span class="line">0042F4CD  |.  8B55 F4       mov edx,[local.3]                        ;  &#x2F;&#x2F; edx&#x3D;Hello Dude!</span><br><span class="line">0042F4D0  |.  E8 2745FDFF   call 004039FC</span><br><span class="line">0042F4D5      75 1A         jnz short 0042F4F1                       ;  &#x2F;&#x2F; 爆破的关键</span><br><span class="line">0042F4D7  |.  6A 00         push 0x0</span><br><span class="line">0042F4D9  |.  B9 64F54200   mov ecx,0042F564</span><br><span class="line">0042F4DE  |.  BA 70F54200   mov edx,0042F570</span><br><span class="line">0042F4E3  |.  A1 480A4300   mov eax,dword ptr ds:[0x430A48]</span><br><span class="line">0042F4E8  |.  8B00          mov eax,dword ptr ds:[eax]</span><br><span class="line">0042F4EA  |.  E8 81ACFFFF   call 0042A170</span><br><span class="line">0042F4EF  |.  EB 18         jmp short 0042F509</span><br><span class="line">0042F4F1  |&gt;  6A 00         push 0x0</span><br><span class="line">0042F4F3  |.  B9 84F54200   mov ecx,0042F584</span><br><span class="line">0042F4F8  |.  BA 8CF54200   mov edx,0042F58C</span><br><span class="line">0042F4FD  |.  A1 480A4300   mov eax,dword ptr ds:[0x430A48]</span><br><span class="line">0042F502  |.  8B00          mov eax,dword ptr ds:[eax]</span><br><span class="line">0042F504  |.  E8 67ACFFFF   call 0042A170</span><br><span class="line">0042F509  |&gt;  33C0          xor eax,eax</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921232903474.png" alt="image-20200921232903474"></p>
-<p><img src="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20200921232911957.png" alt="image-20200921232911957"></p>
-<p>这次逆向是根据最后输出的结果倒推，找到那个输入后的判断是否正确的跳转参数。<br>JNZ  ;不为 0 则跳转   这次的破解就是当输入账号密码或者序列号后判断函数会给一个结果：0或者1，然后JNZ参数根据0或者1去跳转，然后我们把这个跳转函数<strong>填充掉</strong>,前期学习可以不用着急去想JNZ前面的判断函数怎么去判断0或者1,这个也是多次破解的过程 在JNZ和JMP都是跳转函数，破解的时候都可以填充一下去跑一跑程序。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OllyDbg</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">cobaltstrike</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">云函数</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/软件逆向//" class="article-tag-list-link color5">软件逆向</a>
+        			<a href="/categories/渗透测试//" class="article-tag-list-link color5">渗透测试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/渗透测试/流量绕过//" class="article-tag-list-link color5">流量绕过</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/09/21/%E8%BD%AF%E4%BB%B6%E9%80%86%E5%90%91-OllyDbg%E5%AD%A6%E4%B9%A0_1/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/10/23/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-ApereoCAS4.1%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Apereo CAS 4.1 反序列化命令执行漏洞
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/06/22/%E6%B5%81%E9%87%8F%E7%BB%95%E8%BF%87-cobaltstrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E9%9A%90%E8%97%8F%E7%9C%9F%E5%AE%9EIP%E5%92%8C%E6%81%B6%E6%84%8F%E5%9F%9F%E5%90%8D%20-%20%E5%89%AF%E6%9C%AC/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">cobaltstrike域前置隐藏真实IP和恶意域名</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
-  
-  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-<script>
-  var cloudTieConfig = {
-    url: "http://yoursite.com/2020/09/21/%E8%BD%AF%E4%BB%B6%E9%80%86%E5%90%91-OllyDbg%E5%AD%A6%E4%B9%A0_1/", 
-    sourceId: "软件逆向-OllyDbg学习_1",
-    productKey: "true",
-    target: "cloud-tie-wrapper"
-  };
-</script>
-<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -454,8 +265,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
