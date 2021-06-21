@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>cobaltstrike云函数隐藏真实IP | biubiubiu~blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="摘要这个技术最先是在今年的3月份国外提出的，他们利用 azure 对 C2 进行隐藏，国内也有相对应的 云函数厂商，于是我们就尝试使用云函数对我们的 C2 服务器进行隐藏。这个技术的核心原理是利用云函数将我们的请求进行转发（和一些使用第三方应用进行转发是一样的）；C2客户端发出的流量经过 云函数的转发，到达我们的C2服务器，达到隐藏的效果。好不容易有空闲时间抓紧复现一波把坑也顺着踩了一遍">
+  <meta name="description" content="摘要这个技术最先是在今年的3月份国外提出的，他们利用 azure 对 C2 进行隐藏，国内也有相对应的 云函数厂商，于是我们就尝试使用云函数对我们的 C2 服务器进行隐藏。这个技术的核心原理是利用云函数将我们的请求进行转发（和一些使用第三方应用进行转发是一样的）；C2客户端发出的流量经过 云函数的转发，到达我们的C2服务器，达到隐藏的效果。好不容易有空闲时间抓紧复现一波~把坑也顺着踩了一遍。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cobaltstrike云函数隐藏真实IP">
 <meta property="og:url" content="http://yoursite.com/2021/06/21/%E6%B5%81%E9%87%8F%E7%BB%95%E8%BF%87-cobaltstrike%E4%BA%91%E5%87%BD%E6%95%B0%E9%9A%90%E8%97%8F%E7%9C%9F%E5%AE%9EIP/index.html">
 <meta property="og:site_name" content="biubiubiu~blog">
-<meta property="og:description" content="摘要这个技术最先是在今年的3月份国外提出的，他们利用 azure 对 C2 进行隐藏，国内也有相对应的 云函数厂商，于是我们就尝试使用云函数对我们的 C2 服务器进行隐藏。这个技术的核心原理是利用云函数将我们的请求进行转发（和一些使用第三方应用进行转发是一样的）；C2客户端发出的流量经过 云函数的转发，到达我们的C2服务器，达到隐藏的效果。好不容易有空闲时间抓紧复现一波把坑也顺着踩了一遍">
+<meta property="og:description" content="摘要这个技术最先是在今年的3月份国外提出的，他们利用 azure 对 C2 进行隐藏，国内也有相对应的 云函数厂商，于是我们就尝试使用云函数对我们的 C2 服务器进行隐藏。这个技术的核心原理是利用云函数将我们的请求进行转发（和一些使用第三方应用进行转发是一样的）；C2客户端发出的流量经过 云函数的转发，到达我们的C2服务器，达到隐藏的效果。好不容易有空闲时间抓紧复现一波~把坑也顺着踩了一遍。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210621105021630.png">
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210621105127666.png">
@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210621124214191.png">
 <meta property="og:image" content="https://tengxiaofei-img.oss-cn-beijing.aliyuncs.com/img/image-20210621112814303.png">
 <meta property="article:published_time" content="2021-06-21T02:43:25.000Z">
-<meta property="article:modified_time" content="2021-06-21T05:14:13.345Z">
+<meta property="article:modified_time" content="2021-06-21T06:48:21.085Z">
 <meta property="article:author" content="biubiubiu~blog">
 <meta property="article:tag" content="cobaltstrike">
 <meta property="article:tag" content="云函数">
@@ -186,7 +186,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>这个技术最先是在今年的3月份国外提出的，他们利用 azure 对 C2 进行隐藏，国内也有相对应的 云函数厂商，于是我们就尝试使用云函数对我们的 C2 服务器进行隐藏。这个技术的核心原理是利用云函数将我们的请求进行转发（和一些使用第三方应用进行转发是一样的）；C2客户端发出的流量经过 云函数的转发，到达我们的C2服务器，达到隐藏的效果。好不容易有空闲时间抓紧复现一波<del>把坑也顺着踩了一遍</del></p>
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>这个技术最先是在今年的3月份国外提出的，他们利用 azure 对 C2 进行隐藏，国内也有相对应的 云函数厂商，于是我们就尝试使用云函数对我们的 C2 服务器进行隐藏。这个技术的核心原理是利用云函数将我们的请求进行转发（和一些使用第三方应用进行转发是一样的）；C2客户端发出的流量经过 云函数的转发，到达我们的C2服务器，达到隐藏的效果。好不容易有空闲时间抓紧复现一波~把坑也顺着踩了一遍。</p>
 <a id="more"></a>
 
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="云函数创建"><a href="#云函数创建" class="headerlink" title="云函数创建"></a>云函数创建</h3><p>参考了很多文章说在4.0中有玄学，这里就不去踩坑了，直接拿4.1来复现，以某云为例~先创建云函数</p>
@@ -489,15 +489,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CobaltStrike</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">去除特征</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">cobaltstrike</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">云函数</a>
+                <a href="javascript:void(0)" class="js-tag color4">域前置</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">BURP</a>
+                <a href="javascript:void(0)" class="js-tag color1">Domain Fronting</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CVE-2018-8715</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">APPWeb</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -506,6 +522,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">apache solr</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Apereo CAS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -521,11 +541,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">漏洞修复</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Apereo CAS</a>
+                <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,7 +549,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
+                <a href="javascript:void(0)" class="js-tag color5">泛微OA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -541,39 +557,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">泛微云桥</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">泛微OA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">OllyDbg</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CVE-2018-8715</a>
+                <a href="javascript:void(0)" class="js-tag color5">泛微云桥</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">APPWeb</a>
+                <a href="javascript:void(0)" class="js-tag color4">云函数</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">域前置</a>
+                <a href="javascript:void(0)" class="js-tag color5">漏洞修复</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Domain Fronting</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CobaltStrike</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">去除特征</a>
+                <a href="javascript:void(0)" class="js-tag color5">BURP</a>
               </li>
             
             <div class="clearfix"></div>
